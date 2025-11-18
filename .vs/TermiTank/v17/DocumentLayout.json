@@ -1,7 +1,12 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\Users\\sedri\\Projects\\TermiTank\\",
-  "Documents": [],
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{6325AD43-F95E-A24A-3F6E-652657A34B4B}|TermiTank\\termitank.esproj|c:\\users\\sedri\\projects\\termitank\\termitank\\src\\app.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{6325AD43-F95E-A24A-3F6E-652657A34B4B}|TermiTank\\termitank.esproj|solutionrelative:termitank\\src\\app.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -9,7 +14,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 262,
-          "SelectedChildIndex": -1,
+          "SelectedChildIndex": 8,
           "Children": [
             {
               "$type": "Bookmark",
@@ -42,6 +47,19 @@
             {
               "$type": "Bookmark",
               "Name": "ST:3:0:{d212f56b-c48a-434c-a121-1c5d80b59b9f}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "App.css",
+              "DocumentMoniker": "C:\\Users\\sedri\\Projects\\TermiTank\\termitank\\src\\App.css",
+              "RelativeDocumentMoniker": "termitank\\src\\App.css",
+              "ToolTip": "C:\\Users\\sedri\\Projects\\TermiTank\\termitank\\src\\App.css",
+              "RelativeToolTip": "termitank\\src\\App.css",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2025-11-18T14:28:45.697Z",
+              "EditorCaption": ""
             }
           ]
         }
