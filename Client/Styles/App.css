@@ -1,8 +1,38 @@
 #root {
   max-width: 1280px;
+  height: 70%;
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
+}
+
+.main-div {
+    height: auto;
+    width: auto;
+    display: flex;
+    flex-direction: column;
+    margin-right: 10em;
+}
+
+.game-window{
+    height: 550px;
+    width: 1000px;
+    margin: auto;
+    padding: 2em;
+    
+
+    border-radius: 10px;
+    background-color: black;
+
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+
+}
+
+.title{
+    padding: 1em;
 }
 
 .logo {

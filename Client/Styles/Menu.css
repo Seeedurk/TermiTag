@@ -1,0 +1,9 @@
+.Menu {
+    position: fixed;
+    top: 10%;
+    height: 90%;
+    width: 17%;
+    right: 0;
+
+    background-color: gray;
+}

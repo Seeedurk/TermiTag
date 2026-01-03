@@ -1,0 +1,16 @@
+nav {
+    position: fixed;
+
+    top: 0;
+    height: 10%;
+    width: 100%; 
+    left: 0;
+    background: white;
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+
+    justify-content: center;
+    align-content: center;
+}
+
