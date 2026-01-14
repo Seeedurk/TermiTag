@@ -23,7 +23,7 @@ function App() {
 
         socket.on("init_response", (data) => { console.log(data) });
         socket.on("position_update", (data) => {
-            setObjects([data]);
+            setObjects(data);
         });
 
 
@@ -38,20 +38,28 @@ function App() {
     return (
     <>
         <Navbar />
-            <Menu /> 
+
 
         <div className="main-div">
 
-                <h1 className="title">TermiTank</h1>
-                <div className="game-window">
-                    <Canvas width={1000} height={500} objects={objects} />
+
+                <h1 className="title">TermiTag</h1>
+                <div className="middle-div">
+                    <div className="game-window">
+                        <Canvas width={800} height={600} objects={objects} />
+                    </div>
+
+                    <Menu />
                 </div>
-
-
-                <h1>You Are Doomed</h1>
+                <h1>Best experienced on laptop, but now available on mobile</h1>
                 <p className="read-the-docs">
-                    How many models can you destroy?
+                        This project is meant to be a showcase of AI taggers playing against each other in a simple 2D environment.
+                        Using WebSockets and Neural Networks, their fight can be rendered here in real-time.
+                        Use the Menu on the right to select the parameters of the game and enjoy!
                 </p>
+
+                    
+
 
         </div>
        

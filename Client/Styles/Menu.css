@@ -1,9 +1,13 @@
 .Menu {
-    position: fixed;
-    top: 10%;
-    height: 90%;
-    width: 17%;
-    right: 0;
-
-    background-color: gray;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    height: auto;
+    width: 20%;
+    border-radius: 5px;
+    background-color: white;
+    padding: 1rem;
+    box-sizing: border-box;
+    margin: 0 auto; /* center horizontally */
+    margin-bottom: 1rem; /* spacing to game window handled by middle-div gap */
 }

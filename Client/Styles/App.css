@@ -1,9 +1,11 @@
 #root {
-  max-width: 1280px;
-  height: 70%;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+    max-width: 1280px;
+    height: 70%;
+    padding: 2em;
+    margin: 0 auto;
+    margin-left: 0px;
+    margin-right: 0px;
+    background-color: lightblue;
 }
 
 .main-div {
@@ -11,28 +13,56 @@
     width: auto;
     display: flex;
     flex-direction: column;
-    margin-right: 10em;
+    gap: 5%;
+    align-items: center; /* center title, middle-div and text */
 }
 
-.game-window{
-    height: 550px;
-    width: 1000px;
-    margin: auto;
-    padding: 2em;
-    
+.game-window {
+  /* surround the canvas, size to its content */
+  width: auto;
+  height: auto;
+  padding: 1.5em;
+  box-sizing: border-box;
+  background-color: black;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 
-    border-radius: 10px;
-    background-color: black;
-
-
+/* renamed to match the JSX className (middle-div) and ensure vertical layout with centered content */
+.middle-div {
     display: flex;
-    flex-direction: column;
+    height: auto;
+    width: 100%;
+    flex-direction: row;
     justify-content: flex-start;
+    align-items: center;
+    gap: 2rem; /* fixed gap between Menu and game-window */
 
+}
+
+.left-most-div {
+    display: flex;
+    width: 65%;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.right-most-div {
+    display: flex;
+    width: 35%;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
 }
 
 .title{
     padding: 1em;
+    height: 10%;
+    text-align: center; /* center the title text */
 }
 
 .logo {
@@ -68,5 +98,10 @@
 }
 
 .read-the-docs {
+    height: 5%;
   color: #888;
+  text-align: center; /* center the descriptive paragraph */
+  max-width: 900px;
 }
+
+

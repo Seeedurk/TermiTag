@@ -37,7 +37,7 @@ function Canvas({width, height, objects}) {
             const interpX = prevPosRef.current.x + (nextPosRef.current.x - prevPosRef.current.x) * t;
             const interpY = prevPosRef.current.y + (nextPosRef.current.y - prevPosRef.current.y) * t;
 
-            context.fillRect(interpX, interpY, 20, 30);
+            context.fillRect(interpX, interpY, 30, 30);
             animationId = requestAnimationFrame(loop);
         }
 

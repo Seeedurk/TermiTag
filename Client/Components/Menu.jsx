@@ -4,7 +4,11 @@ import '../Styles/Menu.css';
 function Menu() {
 	return(
 		<div className="Menu">
-		HI I exist
+			<h2>Menu</h2>
+			This will be where both statisics and game customization will go.
+			<button>
+                Join Game
+			</button>
 		</div>
 	);
 }

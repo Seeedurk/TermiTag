@@ -4,7 +4,6 @@
   font-weight: 400;
 
   color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
   background-color: lightblue;
 
   font-synthesis: none;
@@ -23,12 +22,13 @@ a:hover {
 }
 
 body {
-   background-color: lightblue;
+  background-color: lightblue;
   margin: 0;
   display: flex;
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
+
 }
 
 h1 {

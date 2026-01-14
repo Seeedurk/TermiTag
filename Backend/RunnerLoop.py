@@ -35,9 +35,8 @@ class RunnerLoop:
             while self._running:
                 t0 = time.time()
 
-                print("tick start", time.time())
                 self.game.step(dt)
-                print("tick end", time.time())
+
 
                 if self.on_state:
                    self.on_state(self.game.get_state())
