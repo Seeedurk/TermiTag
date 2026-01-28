@@ -1,12 +1,13 @@
-import random
+import random 
 
 class Tagger:
 
-    def __init__(self, x, y, deltaX, deltaY):
+    def __init__(self, x, y):
         self.x = x
         self.y = y
-        self.deltaX = deltaX
-        self.deltaY = deltaY    
+        self.QlilophCounter = 0
+        self.deltaX = random.randint(-100,100)
+        self.deltaY = random.randint(-100,100)
     
     def retrieveX(self):
         return self.x
@@ -15,11 +16,15 @@ class Tagger:
         return self.y
 
     def modelInput(self):
-        self.deltaX = random.randint(10,100)
-        self.deltaY = random.randint(10,100)
+        self.deltaX = random.randint(-100,100)
+        self.deltaY = random.randint(-100,100)
     
 
     def update(self, dt):
-        self.modelInput()
+        if(self.QlilophCounter >= 60):
+           self.QlilophCounter = 0
+           self.modelInput()
+        self.QlilophCounter += 1
+        
         self.x += self.deltaX * dt
         self.y += self.deltaY * dt

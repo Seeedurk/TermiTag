@@ -51,7 +51,7 @@ function App() {
 
                     <Menu />
                 </div>
-                <h1>Best experienced on laptop, but now available on mobile</h1>
+                <h1>Best experienced on laptop</h1>
                 <p className="read-the-docs">
                         This project is meant to be a showcase of AI taggers playing against each other in a simple 2D environment.
                         Using WebSockets and Neural Networks, their fight can be rendered here in real-time.

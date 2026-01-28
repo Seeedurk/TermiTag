@@ -4,7 +4,7 @@ import '../Styles/Navbar.css';
 function Navbar() {
 	return (
 		<nav>
-			<h2>Gaming Hub - Home of TermiTag</h2>
+			<h2>Neural Network Simulation</h2>
 		</nav>
 	);
 }

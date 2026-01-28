@@ -9,6 +9,8 @@ function Canvas({width, height, objects}) {
     const prevPosRef = useRef({ x: 0, y: 0 });
     const nextPosRef = useRef({ x: 0, y: 0 });
 
+    const tempPosRef = useRef({ x: 0, y: 0 });
+
     useEffect(() => {
         objectsRef.current = objects;
         if (objectsRef.current.length > 0) {
@@ -18,6 +20,9 @@ function Canvas({width, height, objects}) {
 
             nextPosRef.current.x = objects[0].x;
             nextPosRef.current.y = objects[0].y;
+
+            tempPosRef.current.x = objects[1].x;
+            tempPosRef.current.y = objects[1].y;
 
             lastUpdateRef.current = Date.now();
         }
@@ -38,6 +43,10 @@ function Canvas({width, height, objects}) {
             const interpY = prevPosRef.current.y + (nextPosRef.current.y - prevPosRef.current.y) * t;
 
             context.fillRect(interpX, interpY, 30, 30);
+
+            context.fillStyle = 'blue';
+            context.fillRect(tempPosRef.current.x, tempPosRef.current.y, 30, 30);
+
             animationId = requestAnimationFrame(loop);
         }
 

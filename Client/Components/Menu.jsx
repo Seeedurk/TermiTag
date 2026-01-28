@@ -7,7 +7,13 @@ function Menu() {
 			<h2>Menu</h2>
 			This will be where both statisics and game customization will go.
 			<button>
-                Join Game
+                Run 2 AI Tagger simulation
+			</button>
+			<button>
+                Run 1 AI Tagger vs 1 Human simulation
+			</button>
+			<button>
+                Statistical analysis
 			</button>
 		</div>
 	);
