@@ -1,4 +1,5 @@
 import random 
+from Policy.RunnerPolicy import RunnerPolicy
 
 class Runner:
 
@@ -8,6 +9,10 @@ class Runner:
         self.QlilophCounter = 0
         self.deltaX = random.randint(-100,100)
         self.deltaY = random.randint(-100,100)
+        self.policy = RunnerPolicy(1, 1, 1)
+
+
+        #Declare runnerPolicy
     
     def retrieveX(self):
         return self.x
@@ -26,5 +31,6 @@ class Runner:
            self.modelInput()
         self.QlilophCounter += 1
         
+
         self.x += self.deltaX * dt
         self.y += self.deltaY * dt

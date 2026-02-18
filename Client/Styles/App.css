@@ -1,46 +1,47 @@
 #root {
     max-width: 1280px;
-    height: 70%;
     padding: 2em;
     margin: 0 auto;
-    margin-left: 0px;
-    margin-right: 0px;
     background-color: lightblue;
+    box-sizing: border-box;
 }
 
 .main-div {
     height: auto;
-    width: auto;
+    width: 100%;
+    max-width: 1280px;
+    margin: 0 auto;
+    padding-top: 64px;
     display: flex;
     flex-direction: column;
     gap: 5%;
-    align-items: center; /* center title, middle-div and text */
+    align-items: stretch;
+    background-color: #E9F5FB;
+    border-radius: 10px;
 }
 
 .game-window {
-  /* surround the canvas, size to its content */
-  width: auto;
-  height: auto;
-  padding: 1.5em;
-  box-sizing: border-box;
-  background-color: black;
-  border-radius: 10px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+    width: 100%;
+    min-width: 0;
+    padding: 1.5em;
+    box-sizing: border-box;
+    background-color: black;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex: 1 1 auto;
 }
 
-/* renamed to match the JSX className (middle-div) and ensure vertical layout with centered content */
 .middle-div {
     display: flex;
     height: auto;
     width: 100%;
     flex-direction: row;
     justify-content: flex-start;
-    align-items: center;
-    gap: 2rem; /* fixed gap between Menu and game-window */
-
+    align-items: flex-start;
+    gap: 2rem;
 }
 
 .left-most-div {
@@ -59,49 +60,50 @@
     align-items: center;
 }
 
-.title{
+.title {
     padding: 1em;
-    height: 10%;
-    text-align: center; /* center the title text */
+    height: auto;
+    text-align: center;
 }
 
 .logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+    height: 6em;
+    padding: 1.5em;
+    will-change: filter;
+    transition: filter 300ms;
 }
 
+    .logo:hover {
+        filter: drop-shadow(0 0 2em #646cffaa);
+    }
+
+    .logo.react:hover {
+        filter: drop-shadow(0 0 2em #61dafbaa);
+    }
+
 @keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+    a:nth-of-type(2) .logo {
+        animation: logo-spin infinite 20s linear;
+    }
 }
 
 .card {
-  padding: 2em;
+    padding: 2em;
 }
 
 .read-the-docs {
     height: 5%;
-  color: #888;
-  text-align: center; /* center the descriptive paragraph */
-  max-width: 900px;
+    color: #888;
+    text-align: center;
+    max-width: 900px;
 }
-
-

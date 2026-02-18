@@ -5,6 +5,7 @@ nav {
     height: 10%;
     width: 100%; 
     left: 0;
+
     background: white;
     display: flex;
     flex-direction: row;
@@ -12,3 +13,23 @@ nav {
     align-content: start;
 }
 
+nav h2{
+    margin: 0;
+    line-height: 1;
+    font-size: 1rem;
+}
+
+@media (max-height: 500px){
+    .nav {
+        height: 10%;
+    }
+    nav h2{
+        font-size: 0.9em;
+    }
+}
+
+.game-window,
+.Menu {
+    position:relative;
+    z-index: 1;
+}
