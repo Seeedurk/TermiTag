@@ -3,11 +3,11 @@
     flex-direction: column;
     gap: 20px;
     border-radius: 5px;
-    background-color: white;
+    background: linear-gradient(180deg, rgba(255,255,255,0.85), rgba(245,247,250,0.85));
     padding: 1rem;
     box-sizing: border-box;
     width: 40%;
-    margin: 0 auto;
+    margin: auto;
 }
 
 .menu-toggle {
@@ -24,7 +24,6 @@
     cursor: pointer;
 }
 
-/* mobile: make menu a floating compact panel with toggle */
 @media (max-width: 700px) {
     .Menu {
         position: fixed;
@@ -34,7 +33,7 @@
         max-width: 420px;
         padding: 0.5rem;
         border-radius: 12px;
-        box-shadow: 0 6px 18px rgba(2,6,16,0.35);
+        box-shadow: 0 6px 18px rgba(2,6,16,0.12);
         background: rgba(255,255,255,0.95);
         z-index: 1100;
         transition: transform 220ms ease, height 220ms ease, opacity 220ms ease;

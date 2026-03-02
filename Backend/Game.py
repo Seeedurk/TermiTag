@@ -16,6 +16,9 @@ class Game:
         #Create random destruction objects that tagger and runner avoid
         #add function to both runner and tagger to get their own info, then a function to retrieve an actions 
         #In this step function
+        if(abs(self.Mike.retrieveX() - self.Jason.retrieveX()) < 20 and abs(self.Mike.retrieveY() - self.Jason.retrieveY()) < 20):
+            print("You can't run lil bro")
+
         self.Mike.update(dt)
         self.Jason.update(dt)
         self.checkTag()

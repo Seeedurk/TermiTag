@@ -14,9 +14,9 @@ nav {
 }
 
 nav h2{
-    margin: 0;
+    margin: 2%;
     line-height: 1;
-    font-size: 1rem;
+    font-size: 1.5rem;
 }
 
 @media (max-height: 500px){
