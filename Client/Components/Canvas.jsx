@@ -7,7 +7,7 @@ function Canvas({ width, height, objects }) {
     const lastUpdateRef = useRef(Date.now());
     const prevPosRef = useRef({ x: 0, y: 0 });
     const nextPosRef = useRef({ x: 0, y: 0 });
-    const tempPosRef = useRef({ x: 0, y: 0 });
+    const secondObject = useRef({ x: 0, y: 0 });
 
     useEffect(() => {
         objectsRef.current = objects;
@@ -16,8 +16,8 @@ function Canvas({ width, height, objects }) {
             prevPosRef.current.y = nextPosRef.current.y;
             nextPosRef.current.x = objects[0].x;
             nextPosRef.current.y = objects[0].y;
-            tempPosRef.current.x = objects[1].x;
-            tempPosRef.current.y = objects[1].y;
+            secondObject.current.x = objects[1].x;
+            secondObject.current.y = objects[1].y;
             lastUpdateRef.current = Date.now();
         }
     }, [objects]);
@@ -59,6 +59,7 @@ function Canvas({ width, height, objects }) {
             const interpX = prevPosRef.current.x + (nextPosRef.current.x - prevPosRef.current.x) * t;
             const interpY = prevPosRef.current.y + (nextPosRef.current.y - prevPosRef.current.y) * t;
 
+            //Drawing the interpolated Runner, must switch color
             context.save();
             context.shadowColor = '#ff4d4f';
             context.shadowBlur = 18;
@@ -67,25 +68,64 @@ function Canvas({ width, height, objects }) {
             context.arc(interpX + 15, interpY + 15, 15, 0, Math.PI * 2);
             context.fill();
             context.restore();
-
+            //small inner circle
             context.fillStyle = '#fff';
             context.beginPath();
             context.arc(interpX + 15, interpY + 15, 5, 0, Math.PI * 2);
             context.fill();
 
+            // Label for Runner
+            context.save();
+            context.font = '12px sans-serif';
+            context.textAlign = 'center';
+            context.textBaseline = 'bottom';
+            // small semi-transparent background for legibility
+            const runnerLabel = 'Runner';
+            const rx = interpX + 15;
+            const ry = interpY - 4;
+            const padding = 6;
+            const metrics = context.measureText(runnerLabel);
+            const labelW = metrics.width + padding;
+            const labelH = 16;
+            context.fillStyle = 'rgba(0,0,0,0.5)';
+            context.fillRect(rx - labelW / 2, ry - labelH, labelW, labelH);
+            context.fillStyle = '#ffb3b6';
+            context.fillText(runnerLabel, rx, ry - 4);
+            context.restore();
+        
+
+            //Draw Tagger, raw position, observe if I need interp
             context.save();
             context.shadowColor = '#4da6ff';
             context.shadowBlur = 18;
             context.fillStyle = '#4da6ff';
             context.beginPath();
-            context.arc(tempPosRef.current.x + 15, tempPosRef.current.y + 15, 15, 0, Math.PI * 2);
+            context.arc(secondObject.current.x + 15, secondObject.current.y + 15, 15, 0, Math.PI * 2);
             context.fill();
             context.restore();
-
+            //Small Chaser circle
             context.fillStyle = '#fff';
             context.beginPath();
-            context.arc(tempPosRef.current.x + 15, tempPosRef.current.y + 15, 5, 0, Math.PI * 2);
+            context.arc(secondObject.current.x + 15, secondObject.current.y + 15, 5, 0, Math.PI * 2);
             context.fill();
+
+            // Label for Tagger
+            context.save();
+            context.font = '12px sans-serif';
+            context.textAlign = 'center';
+            context.textBaseline = 'bottom';
+            const chaserLabel = 'Chaser';
+            const cx = secondObject.current.x + 15;
+            const cy = secondObject.current.y - 4;
+            const paddingC = 6;
+            const metricsC = context.measureText(chaserLabel);
+            const labelWC = metricsC.width + paddingC;
+            const labelHC = 16;
+            context.fillStyle = 'rgba(0,0,0,0.5)';
+            context.fillRect(cx - labelWC / 2, cy - labelHC, labelWC, labelHC);
+            context.fillStyle = '#d6edff';
+            context.fillText(chaserLabel, cx, cy - 4);
+            context.restore();
 
             animationId = requestAnimationFrame(loop);
         }

@@ -7,8 +7,11 @@ class Runner:
         self.x = x
         self.y = y
         self.QlilophCounter = 0
-        self.deltaX = random.randint(-100,100)
-        self.deltaY = random.randint(-100,100)
+        self.deltaX = 0
+        self.deltaY = 0
+
+        self.accelX = random.randint(-25,25)
+        self.accelY = random.randint(-25,25)
         self.policy = RunnerPolicy(1, 1, 1)
 
 
@@ -20,9 +23,15 @@ class Runner:
     def retrieveY(self):
         return self.y
 
+    def modifyX(self, inputX):
+        self.x = inputX
+
+    def modifyY(self, inputY):
+        self.y = inputY
+
     def modelInput(self):
-        self.deltaX = random.randint(-100,100)
-        self.deltaY = random.randint(-100,100)
+        self.accelX = random.randint(-25,25)
+        self.accelY = random.randint(-25,25)
     
 
     def update(self, dt):
@@ -30,7 +39,9 @@ class Runner:
            self.QlilophCounter = 0
            self.modelInput()
         self.QlilophCounter += 1
-        
 
-        self.x += self.deltaX * dt
-        self.y += self.deltaY * dt
+        self.deltaX += self.accelX * dt
+        self.deltaY += self.accelY * dt
+
+        self.x += self.deltaX #figure out if * dt in neccessary here
+        self.y += self.deltaY

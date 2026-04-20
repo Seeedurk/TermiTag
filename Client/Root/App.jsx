@@ -3,7 +3,6 @@ import '../Styles/App.css'
 import Canvas from '../Components/Canvas';
 import Navbar from '../Components/Navbar';
 import Menu from '../Components/Menu';
-
 import socket from '../Components/Socket';
 function App() {
 

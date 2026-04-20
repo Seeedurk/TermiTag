@@ -3,8 +3,20 @@
   "WorkspaceRootPath": "C:\\Users\\sedri\\Projects\\TermiTank\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\sedri\\Projects\\TermiTank\\Client\\Styles\\Menu.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Client\\Styles\\Menu.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\sedri\\Projects\\TermiTank\\Client\\Root\\App.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Client\\Root\\App.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\sedri\\Projects\\TermiTank\\Client\\Styles\\index.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Client\\Styles\\index.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\sedri\\Projects\\TermiTank\\Client\\Styles\\Canvas.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Client\\Styles\\Canvas.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\sedri\\Projects\\TermiTank\\Client\\Styles\\App.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Client\\Styles\\App.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\sedri\\Projects\\TermiTank\\Client\\Components\\Menu.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
@@ -15,60 +27,16 @@
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Client\\Styles\\Help.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\sedri\\Projects\\TermiTank\\Client\\Root\\App.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Client\\Root\\App.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\sedri\\Projects\\TermiTank\\Client\\Root\\main.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Client\\Root\\main.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\sedri\\Projects\\TermiTank\\Client\\Components\\Help.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Client\\Components\\Help.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\sedri\\Projects\\TermiTank\\Client\\Styles\\index.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Client\\Styles\\index.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\sedri\\Projects\\TermiTank\\Client\\Styles\\App.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Client\\Styles\\App.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\sedri\\Projects\\TermiTank\\Client\\Components\\Canvas.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Client\\Components\\Canvas.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\sedri\\Projects\\TermiTank\\Client\\Styles\\Navbar.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Client\\Styles\\Navbar.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\sedri\\Projects\\TermiTank\\Client\\Styles\\Canvas.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Client\\Styles\\Canvas.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\sedri\\Projects\\TermiTank\\Client\\Components\\Navbar.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Client\\Components\\Navbar.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\sedri\\Projects\\TermiTank\\Backend\\Game.py||{8B382828-6202-11D1-8870-0000F87579D2}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Backend\\Game.py||{8B382828-6202-11D1-8870-0000F87579D2}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\sedri\\Projects\\TermiTank\\Backend\\main.py||{8B382828-6202-11D1-8870-0000F87579D2}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Backend\\main.py||{8B382828-6202-11D1-8870-0000F87579D2}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\sedri\\Projects\\TermiTank\\Backend\\Policy\\RunnerPolicy.py||{8B382828-6202-11D1-8870-0000F87579D2}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Backend\\Policy\\RunnerPolicy.py||{8B382828-6202-11D1-8870-0000F87579D2}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\sedri\\Projects\\TermiTank\\Backend\\Policy\\__init__.py||{8B382828-6202-11D1-8870-0000F87579D2}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Backend\\Policy\\__init__.py||{8B382828-6202-11D1-8870-0000F87579D2}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\sedri\\Projects\\TermiTank\\Backend\\Models\\__init__.py||{8B382828-6202-11D1-8870-0000F87579D2}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Backend\\Models\\__init__.py||{8B382828-6202-11D1-8870-0000F87579D2}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\sedri\\Projects\\TermiTank\\Backend\\Game.py||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Backend\\Game.py||{8B382828-6202-11D1-8870-0000F87579D2}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\sedri\\Projects\\TermiTank\\Backend\\Runner.py||{8B382828-6202-11D1-8870-0000F87579D2}",
@@ -79,8 +47,40 @@
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Backend\\RunnerLoop.py||{8B382828-6202-11D1-8870-0000F87579D2}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\sedri\\Projects\\TermiTank\\Client\\Components\\Help.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Client\\Components\\Help.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\sedri\\Projects\\TermiTank\\Backend\\Tagger.py||{8B382828-6202-11D1-8870-0000F87579D2}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Backend\\Tagger.py||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\sedri\\Projects\\TermiTank\\Backend\\Policy\\RunnerPolicy.py||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Backend\\Policy\\RunnerPolicy.py||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\sedri\\Projects\\TermiTank\\Client\\Root\\main.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Client\\Root\\main.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\sedri\\Projects\\TermiTank\\Client\\Styles\\Menu.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Client\\Styles\\Menu.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\sedri\\Projects\\TermiTank\\Client\\Styles\\Navbar.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Client\\Styles\\Navbar.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\sedri\\Projects\\TermiTank\\Client\\Components\\Navbar.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Client\\Components\\Navbar.jsx||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\sedri\\Projects\\TermiTank\\Backend\\Policy\\__init__.py||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Backend\\Policy\\__init__.py||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\sedri\\Projects\\TermiTank\\Backend\\Models\\__init__.py||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Backend\\Models\\__init__.py||{8B382828-6202-11D1-8870-0000F87579D2}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\sedri\\Projects\\TermiTank\\Backend\\Models\\model.py||{8B382828-6202-11D1-8870-0000F87579D2}",
@@ -128,11 +128,11 @@
       "DocumentGroups": [
         {
           "DockedWidth": 262,
-          "SelectedChildIndex": 15,
+          "SelectedChildIndex": 16,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 2,
               "Title": "Canvas.css",
               "DocumentMoniker": "C:\\Users\\sedri\\Projects\\TermiTank\\Client\\Styles\\Canvas.css",
               "RelativeDocumentMoniker": "Client\\Styles\\Canvas.css",
@@ -141,34 +141,7 @@
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
               "WhenOpened": "2026-01-12T22:36:02.202Z",
-              "IsPinned": true,
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Help.css",
-              "DocumentMoniker": "C:\\Users\\sedri\\Projects\\TermiTank\\Client\\Styles\\Help.css",
-              "RelativeDocumentMoniker": "Client\\Styles\\Help.css",
-              "ToolTip": "C:\\Users\\sedri\\Projects\\TermiTank\\Client\\Styles\\Help.css",
-              "RelativeToolTip": "Client\\Styles\\Help.css",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAALAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
-              "WhenOpened": "2026-02-18T17:04:24.005Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "Help.jsx",
-              "DocumentMoniker": "C:\\Users\\sedri\\Projects\\TermiTank\\Client\\Components\\Help.jsx",
-              "RelativeDocumentMoniker": "Client\\Components\\Help.jsx",
-              "ToolTip": "C:\\Users\\sedri\\Projects\\TermiTank\\Client\\Components\\Help.jsx",
-              "RelativeToolTip": "Client\\Components\\Help.jsx",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAUAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
-              "WhenOpened": "2026-02-18T17:04:06.756Z",
-              "EditorCaption": ""
+              "IsPinned": true
             },
             {
               "$type": "Bookmark",
@@ -208,72 +181,164 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Menu.jsx",
-              "DocumentMoniker": "C:\\Users\\sedri\\Projects\\TermiTank\\Client\\Components\\Menu.jsx",
-              "RelativeDocumentMoniker": "Client\\Components\\Menu.jsx",
-              "ToolTip": "C:\\Users\\sedri\\Projects\\TermiTank\\Client\\Components\\Menu.jsx",
-              "RelativeToolTip": "Client\\Components\\Menu.jsx",
-              "ViewState": "AgIAAAUAAAAAAAAAAAAAwBUAAAApAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
-              "WhenOpened": "2026-01-12T22:37:45.996Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 6,
               "Title": "Canvas.jsx",
               "DocumentMoniker": "C:\\Users\\sedri\\Projects\\TermiTank\\Client\\Components\\Canvas.jsx",
               "RelativeDocumentMoniker": "Client\\Components\\Canvas.jsx",
               "ToolTip": "C:\\Users\\sedri\\Projects\\TermiTank\\Client\\Components\\Canvas.jsx",
               "RelativeToolTip": "Client\\Components\\Canvas.jsx",
-              "ViewState": "AgIAAAUAAAAAAAAAAAAAwGIAAAAWAAAAAAAAAA==",
+              "ViewState": "AgIAACQAAAAAAAAAAAAcwHMAAAAsAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
-              "WhenOpened": "2026-01-13T01:13:19.163Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "index.css",
-              "DocumentMoniker": "C:\\Users\\sedri\\Projects\\TermiTank\\Client\\Styles\\index.css",
-              "RelativeDocumentMoniker": "Client\\Styles\\index.css",
-              "ToolTip": "C:\\Users\\sedri\\Projects\\TermiTank\\Client\\Styles\\index.css",
-              "RelativeToolTip": "Client\\Styles\\index.css",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABgAAAAdAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
-              "WhenOpened": "2026-01-12T22:34:45.676Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Menu.css",
-              "DocumentMoniker": "C:\\Users\\sedri\\Projects\\TermiTank\\Client\\Styles\\Menu.css",
-              "RelativeDocumentMoniker": "Client\\Styles\\Menu.css",
-              "ToolTip": "C:\\Users\\sedri\\Projects\\TermiTank\\Client\\Styles\\Menu.css",
-              "RelativeToolTip": "Client\\Styles\\Menu.css",
-              "ViewState": "AgIAABgAAAAAAAAAAAAAABgAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
-              "WhenOpened": "2026-01-12T22:51:58.14Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-01-13T01:13:19.163Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 7,
+              "Title": "main.py",
+              "DocumentMoniker": "C:\\Users\\sedri\\Projects\\TermiTank\\Backend\\main.py",
+              "RelativeDocumentMoniker": "Backend\\main.py",
+              "ToolTip": "C:\\Users\\sedri\\Projects\\TermiTank\\Backend\\main.py",
+              "RelativeToolTip": "Backend\\main.py",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAAACoAAAASAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002457|",
+              "WhenOpened": "2026-01-12T22:41:33.876Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "Tagger.py",
+              "DocumentMoniker": "C:\\Users\\sedri\\Projects\\TermiTank\\Backend\\Tagger.py",
+              "RelativeDocumentMoniker": "Backend\\Tagger.py",
+              "ToolTip": "C:\\Users\\sedri\\Projects\\TermiTank\\Backend\\Tagger.py",
+              "RelativeToolTip": "Backend\\Tagger.py",
+              "ViewState": "AgIAAAIAAAAAAAAAAAAAAAIAAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002457|",
+              "WhenOpened": "2026-01-11T08:00:50.042Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "RunnerPolicy.py",
+              "DocumentMoniker": "C:\\Users\\sedri\\Projects\\TermiTank\\Backend\\Policy\\RunnerPolicy.py",
+              "RelativeDocumentMoniker": "Backend\\Policy\\RunnerPolicy.py",
+              "ToolTip": "C:\\Users\\sedri\\Projects\\TermiTank\\Backend\\Policy\\RunnerPolicy.py",
+              "RelativeToolTip": "Backend\\Policy\\RunnerPolicy.py",
+              "ViewState": "AgIAABsAAAAAAAAAAAAAABUAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002457|",
+              "WhenOpened": "2026-01-13T03:46:14.52Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "Help.jsx",
+              "DocumentMoniker": "C:\\Users\\sedri\\Projects\\TermiTank\\Client\\Components\\Help.jsx",
+              "RelativeDocumentMoniker": "Client\\Components\\Help.jsx",
+              "ToolTip": "C:\\Users\\sedri\\Projects\\TermiTank\\Client\\Components\\Help.jsx",
+              "RelativeToolTip": "Client\\Components\\Help.jsx",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAUAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
+              "WhenOpened": "2026-02-18T17:04:06.756Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
               "Title": "App.css",
               "DocumentMoniker": "C:\\Users\\sedri\\Projects\\TermiTank\\Client\\Styles\\App.css",
               "RelativeDocumentMoniker": "Client\\Styles\\App.css",
               "ToolTip": "C:\\Users\\sedri\\Projects\\TermiTank\\Client\\Styles\\App.css",
               "RelativeToolTip": "Client\\Styles\\App.css",
-              "ViewState": "AgIAAE0AAAAAAAAAAAAYwG0AAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAFcAAAAAAAAAAAAAAG0AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
-              "WhenOpened": "2026-01-12T22:44:46.674Z",
+              "WhenOpened": "2026-01-12T22:44:46.674Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "App.jsx",
+              "DocumentMoniker": "C:\\Users\\sedri\\Projects\\TermiTank\\Client\\Root\\App.jsx",
+              "RelativeDocumentMoniker": "Client\\Root\\App.jsx",
+              "ToolTip": "C:\\Users\\sedri\\Projects\\TermiTank\\Client\\Root\\App.jsx",
+              "RelativeToolTip": "Client\\Root\\App.jsx",
+              "ViewState": "AgIAABMAAAAAAAAAAAAAwBwAAAAHAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
+              "WhenOpened": "2026-01-12T22:54:43.056Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 4,
+              "Title": "Menu.jsx",
+              "DocumentMoniker": "C:\\Users\\sedri\\Projects\\TermiTank\\Client\\Components\\Menu.jsx",
+              "RelativeDocumentMoniker": "Client\\Components\\Menu.jsx",
+              "ToolTip": "C:\\Users\\sedri\\Projects\\TermiTank\\Client\\Components\\Menu.jsx",
+              "RelativeToolTip": "Client\\Components\\Menu.jsx",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAEAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
+              "WhenOpened": "2026-01-12T22:37:45.996Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Help.css",
+              "DocumentMoniker": "C:\\Users\\sedri\\Projects\\TermiTank\\Client\\Styles\\Help.css",
+              "RelativeDocumentMoniker": "Client\\Styles\\Help.css",
+              "ToolTip": "C:\\Users\\sedri\\Projects\\TermiTank\\Client\\Styles\\Help.css",
+              "RelativeToolTip": "Client\\Styles\\Help.css",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAALAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2026-02-18T17:04:24.005Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "index.css",
+              "DocumentMoniker": "C:\\Users\\sedri\\Projects\\TermiTank\\Client\\Styles\\index.css",
+              "RelativeDocumentMoniker": "Client\\Styles\\index.css",
+              "ToolTip": "C:\\Users\\sedri\\Projects\\TermiTank\\Client\\Styles\\index.css",
+              "RelativeToolTip": "Client\\Styles\\index.css",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACYAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2026-01-12T22:34:45.676Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "Game.py",
+              "DocumentMoniker": "C:\\Users\\sedri\\Projects\\TermiTank\\Backend\\Game.py",
+              "RelativeDocumentMoniker": "Backend\\Game.py",
+              "ToolTip": "C:\\Users\\sedri\\Projects\\TermiTank\\Backend\\Game.py",
+              "RelativeToolTip": "Backend\\Game.py",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002457|",
+              "WhenOpened": "2026-01-13T03:45:35.504Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "Runner.py",
+              "DocumentMoniker": "C:\\Users\\sedri\\Projects\\TermiTank\\Backend\\Runner.py",
+              "RelativeDocumentMoniker": "Backend\\Runner.py",
+              "ToolTip": "C:\\Users\\sedri\\Projects\\TermiTank\\Backend\\Runner.py",
+              "RelativeToolTip": "Backend\\Runner.py",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002457|",
+              "WhenOpened": "2026-01-13T03:45:36.234Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "RunnerLoop.py",
+              "DocumentMoniker": "C:\\Users\\sedri\\Projects\\TermiTank\\Backend\\RunnerLoop.py",
+              "RelativeDocumentMoniker": "Backend\\RunnerLoop.py",
+              "ToolTip": "C:\\Users\\sedri\\Projects\\TermiTank\\Backend\\RunnerLoop.py",
+              "RelativeToolTip": "Backend\\RunnerLoop.py",
+              "ViewState": "AgIAABIAAAAAAAAAAAAAAAAAAAADAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002457|",
+              "WhenOpened": "2026-01-11T07:54:10.002Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
               "Title": "main.jsx",
               "DocumentMoniker": "C:\\Users\\sedri\\Projects\\TermiTank\\Client\\Root\\main.jsx",
               "RelativeDocumentMoniker": "Client\\Root\\main.jsx",
@@ -281,25 +346,23 @@
               "RelativeToolTip": "Client\\Root\\main.jsx",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
-              "WhenOpened": "2026-01-12T22:54:42.253Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-01-12T22:54:42.253Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "App.jsx",
-              "DocumentMoniker": "C:\\Users\\sedri\\Projects\\TermiTank\\Client\\Root\\App.jsx",
-              "RelativeDocumentMoniker": "Client\\Root\\App.jsx",
-              "ToolTip": "C:\\Users\\sedri\\Projects\\TermiTank\\Client\\Root\\App.jsx",
-              "RelativeToolTip": "Client\\Root\\App.jsx",
-              "ViewState": "AgIAACEAAAAAAAAAAAAAADUAAABMAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
-              "WhenOpened": "2026-01-12T22:54:43.056Z",
-              "EditorCaption": ""
+              "DocumentIndex": 15,
+              "Title": "Menu.css",
+              "DocumentMoniker": "C:\\Users\\sedri\\Projects\\TermiTank\\Client\\Styles\\Menu.css",
+              "RelativeDocumentMoniker": "Client\\Styles\\Menu.css",
+              "ToolTip": "C:\\Users\\sedri\\Projects\\TermiTank\\Client\\Styles\\Menu.css",
+              "RelativeToolTip": "Client\\Styles\\Menu.css",
+              "ViewState": "AgIAABgAAAAAAAAAAAAAABgAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2026-01-12T22:51:58.14Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 16,
               "Title": "Navbar.css",
               "DocumentMoniker": "C:\\Users\\sedri\\Projects\\TermiTank\\Client\\Styles\\Navbar.css",
               "RelativeDocumentMoniker": "Client\\Styles\\Navbar.css",
@@ -307,12 +370,11 @@
               "RelativeToolTip": "Client\\Styles\\Navbar.css",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAOAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
-              "WhenOpened": "2026-01-12T22:44:58.351Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-01-12T22:44:58.351Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 17,
               "Title": "Navbar.jsx",
               "DocumentMoniker": "C:\\Users\\sedri\\Projects\\TermiTank\\Client\\Components\\Navbar.jsx",
               "RelativeDocumentMoniker": "Client\\Components\\Navbar.jsx",
@@ -320,84 +382,11 @@
               "RelativeToolTip": "Client\\Components\\Navbar.jsx",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAWAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003663|",
-              "WhenOpened": "2026-01-12T22:52:21.277Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 14,
-              "Title": "RunnerPolicy.py",
-              "DocumentMoniker": "C:\\Users\\sedri\\Projects\\TermiTank\\Backend\\Policy\\RunnerPolicy.py",
-              "RelativeDocumentMoniker": "Backend\\Policy\\RunnerPolicy.py",
-              "ToolTip": "C:\\Users\\sedri\\Projects\\TermiTank\\Backend\\Policy\\RunnerPolicy.py",
-              "RelativeToolTip": "Backend\\Policy\\RunnerPolicy.py",
-              "ViewState": "AgIAABIAAAAAAAAAAAAAABUAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002457|",
-              "WhenOpened": "2026-01-13T03:46:14.52Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 13,
-              "Title": "main.py",
-              "DocumentMoniker": "C:\\Users\\sedri\\Projects\\TermiTank\\Backend\\main.py",
-              "RelativeDocumentMoniker": "Backend\\main.py",
-              "ToolTip": "C:\\Users\\sedri\\Projects\\TermiTank\\Backend\\main.py",
-              "RelativeToolTip": "Backend\\main.py",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAADYAAAAaAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002457|",
-              "WhenOpened": "2026-01-12T22:41:33.876Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 12,
-              "Title": "Game.py",
-              "DocumentMoniker": "C:\\Users\\sedri\\Projects\\TermiTank\\Backend\\Game.py",
-              "RelativeDocumentMoniker": "Backend\\Game.py",
-              "ToolTip": "C:\\Users\\sedri\\Projects\\TermiTank\\Backend\\Game.py",
-              "RelativeToolTip": "Backend\\Game.py",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAABHAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002457|",
-              "WhenOpened": "2026-01-13T03:45:35.504Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 17,
-              "Title": "Runner.py",
-              "DocumentMoniker": "C:\\Users\\sedri\\Projects\\TermiTank\\Backend\\Runner.py",
-              "RelativeDocumentMoniker": "Backend\\Runner.py",
-              "ToolTip": "C:\\Users\\sedri\\Projects\\TermiTank\\Backend\\Runner.py",
-              "RelativeToolTip": "Backend\\Runner.py",
-              "ViewState": "AgIAAA8AAAAAAAAAAAAAACEAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002457|",
-              "WhenOpened": "2026-01-13T03:45:36.234Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 18,
-              "Title": "RunnerLoop.py",
-              "DocumentMoniker": "C:\\Users\\sedri\\Projects\\TermiTank\\Backend\\RunnerLoop.py",
-              "RelativeDocumentMoniker": "Backend\\RunnerLoop.py",
-              "ToolTip": "C:\\Users\\sedri\\Projects\\TermiTank\\Backend\\RunnerLoop.py",
-              "RelativeToolTip": "Backend\\RunnerLoop.py",
-              "ViewState": "AgIAABgAAAAAAAAAAAAAAAAAAAADAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002457|",
-              "WhenOpened": "2026-01-11T07:54:10.002Z"
+              "WhenOpened": "2026-01-12T22:52:21.277Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 19,
-              "Title": "Tagger.py",
-              "DocumentMoniker": "C:\\Users\\sedri\\Projects\\TermiTank\\Backend\\Tagger.py",
-              "RelativeDocumentMoniker": "Backend\\Tagger.py",
-              "ToolTip": "C:\\Users\\sedri\\Projects\\TermiTank\\Backend\\Tagger.py",
-              "RelativeToolTip": "Backend\\Tagger.py",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAMAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002457|",
-              "WhenOpened": "2026-01-11T08:00:50.042Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 16,
               "Title": "__init__.py",
               "DocumentMoniker": "C:\\Users\\sedri\\Projects\\TermiTank\\Backend\\Models\\__init__.py",
               "RelativeDocumentMoniker": "Backend\\Models\\__init__.py",
@@ -409,7 +398,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 18,
               "Title": "__init__.py",
               "DocumentMoniker": "C:\\Users\\sedri\\Projects\\TermiTank\\Backend\\Policy\\__init__.py",
               "RelativeDocumentMoniker": "Backend\\Policy\\__init__.py",
