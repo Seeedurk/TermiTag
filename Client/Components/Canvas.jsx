@@ -17,18 +17,20 @@ function Canvas({ width, height, objects }) {
     //Note, I can't use objects states directly in canvas, it just doesn't work, so I create these references to use the data
     useEffect(() => {
         objectsRef.current = objects;
-        if (objectsRef.current.length > 0) {
+
+        if (objects.runner && objects.tagger && objects.scores) {
             prevPosRef.current.x = nextPosRef.current.x;
             prevPosRef.current.y = nextPosRef.current.y;
-            nextPosRef.current.x = objects[0].x;
-            nextPosRef.current.y = objects[0].y;
-            secondObject.current.x = objects[1].x;
-            secondObject.current.y = objects[1].y;
+            nextPosRef.current.x = objects.runner.x;
+            nextPosRef.current.y = objects.runner.y;
+            secondObject.current.x = objects.tagger.x;
+            secondObject.current.y = objects.tagger.y;
             lastUpdateRef.current = Date.now();
 
-            scoreObject.current.taggerScore = objects[2].taggerScore;
-            scoreObject.current.runnerScore = objects[2].runnerScore;
+            scoreObject.current.taggerScore = objects.scores.taggerScore;
+            scoreObject.current.runnerScore = objects.scores.runnerScore;
         }
+
     }, [objects]);
 
     useEffect(() => {

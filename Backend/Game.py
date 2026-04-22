@@ -69,5 +69,18 @@ class Game:
             for wall in self.Walls
         ]
         #Add score object that is sent along side the positional data
-        return [{'x': self.Mike.retrieveX(), 'y': self.Mike.retrieveY()}, {'x': self.Jason.retrieveX(), 'y': self.Jason.retrieveY()}, {'taggerScore': self.taggerScore, 'runnerScore': self.runnerScore}]
+        return {
+            'runner': {
+                'x': self.Mike.retrieveX(), 
+                'y': self.Mike.retrieveY()
+            }, 
+            'tagger': {
+                'x': self.Jason.retrieveX(), 
+                'y': self.Jason.retrieveY()
+            }, 
+            'scores': {
+                'taggerScore': self.taggerScore, 
+                'runnerScore': self.runnerScore
+            }
+        }
 
