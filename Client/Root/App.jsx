@@ -4,6 +4,7 @@ import Canvas from '../Components/Canvas';
 import Navbar from '../Components/Navbar';
 import Menu from '../Components/Menu';
 import socket from '../Components/Socket';
+
 function App() {
 
     const effectRan = useRef(false);
@@ -34,6 +35,7 @@ function App() {
         
     }, [objects])
 
+    /*I can move graph if I want other format*/
     return (
     <>
         <Navbar />
@@ -41,7 +43,7 @@ function App() {
 
         <div className="main-div">
 
-
+                
                 <h1 className="title">TermiTag</h1>
                 <div className="middle-div">
                     <div className="game-window">
@@ -50,6 +52,10 @@ function App() {
 
                     <Menu />
                 </div>
+
+
+
+
                 <h1>Simulation only on Mobile, Use Laptop to play against AI</h1>
                 <p className="read-the-docs">
                         This project is meant to be a showcase of AI taggers playing against each other in a simple 2D environment.
