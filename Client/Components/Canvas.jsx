@@ -4,11 +4,17 @@ import '../Styles/Canvas.css';
 function Canvas({ width, height, objects }) {
     const canvasRef = useRef(null);
     const objectsRef = useRef([]);
+
     const lastUpdateRef = useRef(Date.now());
     const prevPosRef = useRef({ x: 0, y: 0 });
     const nextPosRef = useRef({ x: 0, y: 0 });
     const secondObject = useRef({ x: 0, y: 0 });
 
+    const scoreObject = useRef({ taggerScore: 0, runnerScore: 0 });
+
+    //I have much more comments in this section cuz the canvas code is rather complex
+
+    //Note, I can't use objects states directly in canvas, it just doesn't work, so I create these references to use the data
     useEffect(() => {
         objectsRef.current = objects;
         if (objectsRef.current.length > 0) {
@@ -19,6 +25,9 @@ function Canvas({ width, height, objects }) {
             secondObject.current.x = objects[1].x;
             secondObject.current.y = objects[1].y;
             lastUpdateRef.current = Date.now();
+
+            scoreObject.current.taggerScore = objects[2].taggerScore;
+            scoreObject.current.runnerScore = objects[2].runnerScore;
         }
     }, [objects]);
 
@@ -61,9 +70,10 @@ function Canvas({ width, height, objects }) {
 
             //Drawing the interpolated Runner, must switch color
             context.save();
-            context.shadowColor = '#ff4d4f';
+            context.shadowColor = '#4da6ff';
             context.shadowBlur = 18;
-            context.fillStyle = '#ff4d4f';
+            context.fillStyle = '#4da6ff';
+
             context.beginPath();
             context.arc(interpX + 15, interpY + 15, 15, 0, Math.PI * 2);
             context.fill();
@@ -89,16 +99,17 @@ function Canvas({ width, height, objects }) {
             const labelH = 16;
             context.fillStyle = 'rgba(0,0,0,0.5)';
             context.fillRect(rx - labelW / 2, ry - labelH, labelW, labelH);
-            context.fillStyle = '#ffb3b6';
+            context.fillStyle = '#d6edff';
             context.fillText(runnerLabel, rx, ry - 4);
+            context.fillText('Runner: '+ scoreObject.current.runnerScore, 350, 30)
             context.restore();
         
 
             //Draw Tagger, raw position, observe if I need interp
             context.save();
-            context.shadowColor = '#4da6ff';
+            context.shadowColor = '#ff4d4f';
             context.shadowBlur = 18;
-            context.fillStyle = '#4da6ff';
+            context.fillStyle = '#ff4d4f';
             context.beginPath();
             context.arc(secondObject.current.x + 15, secondObject.current.y + 15, 15, 0, Math.PI * 2);
             context.fill();
@@ -114,7 +125,7 @@ function Canvas({ width, height, objects }) {
             context.font = '12px sans-serif';
             context.textAlign = 'center';
             context.textBaseline = 'bottom';
-            const chaserLabel = 'Chaser';
+            const chaserLabel = 'Tagger';
             const cx = secondObject.current.x + 15;
             const cy = secondObject.current.y - 4;
             const paddingC = 6;
@@ -123,8 +134,9 @@ function Canvas({ width, height, objects }) {
             const labelHC = 16;
             context.fillStyle = 'rgba(0,0,0,0.5)';
             context.fillRect(cx - labelWC / 2, cy - labelHC, labelWC, labelHC);
-            context.fillStyle = '#d6edff';
+            context.fillStyle = '#ffb3b6';
             context.fillText(chaserLabel, cx, cy - 4);
+            context.fillText('Tagger: '+ scoreObject.current.taggerScore, 450, 30);
             context.restore();
 
             animationId = requestAnimationFrame(loop);

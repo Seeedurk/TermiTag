@@ -30,15 +30,25 @@ class Runner:
         self.y = inputY
 
     def modelInput(self):
-        self.accelX = random.randint(-25,25)
-        self.accelY = random.randint(-25,25)
+        self.accelX = random.randint(-10,10)
+        self.accelY = random.randint(-10,10)
     
+    def roundReset(self):
+        self.x = 200
+        self.y = 300
+        self.deltaX = 0
+        self.deltaY = 0
+        self.accelX = 0
+        self.accelY = 0
 
     def update(self, dt):
-        if(self.QlilophCounter >= 60):
-           self.QlilophCounter = 0
-           self.modelInput()
-        self.QlilophCounter += 1
+
+        self.modelInput()
+
+        if(self.deltaX > 50):
+            self.deltaX = 50
+        if(self.deltaY > 50):
+            self.deltaY = 50
 
         self.deltaX += self.accelX * dt
         self.deltaY += self.accelY * dt
