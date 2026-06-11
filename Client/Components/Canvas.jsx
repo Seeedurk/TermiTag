@@ -10,7 +10,9 @@ function Canvas({ width, height, objects }) {
     const nextPosRef = useRef({ x: 0, y: 0 });
     const secondObject = useRef({ x: 0, y: 0 });
 
+
     const scoreObject = useRef({ taggerScore: 0, runnerScore: 0 });
+    const timer = useRef(0);
 
     //I have much more comments in this section cuz the canvas code is rather complex
 
@@ -29,6 +31,8 @@ function Canvas({ width, height, objects }) {
 
             scoreObject.current.taggerScore = objects.scores.taggerScore;
             scoreObject.current.runnerScore = objects.scores.runnerScore;
+
+            timer.current = objects.timer.time;
         }
 
     }, [objects]);
@@ -141,6 +145,11 @@ function Canvas({ width, height, objects }) {
             context.fillText('Tagger: '+ scoreObject.current.taggerScore, 450, 30);
             context.restore();
 
+
+            //timer
+            context.fillStyle = '#FFFFFF';
+            context.font = '20px sans-serif';
+            context.fillText(timer.current, 395, 30);
             animationId = requestAnimationFrame(loop);
         }
 

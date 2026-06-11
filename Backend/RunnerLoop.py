@@ -8,12 +8,23 @@ class RunnerLoop:
         self.on_state = on_state
         self._running = False
         self._gt = None
+        self._training = False;
 
     def start(self):
         if self._running:
             return
         self._running = True
         self._gt = eventlet.spawn(self._run)
+
+    def trainStart(self):
+        print("Train start works")
+        if self._training:
+            return
+        print("is this the prob")
+        self._training = True
+        self._trainingRun()
+
+
 
     def stop(self, timeout=2.0):
         self._running = False
@@ -44,4 +55,30 @@ class RunnerLoop:
                 eventlet.sleep(max(0, dt - elapsed))
         finally:
             self._running = False
-            self._gt = None 
+            self._gt = None
+            
+    def _trainingRun(self): #TODO: Add all the runner policy changing
+        policy = self.game.Mike.policy
+        try:
+            while self._training:
+
+                state_old = policy.get_state(self.game)
+
+                action = policy.get_action(state_old)
+
+                reward, done = self.game.train_step(action)
+
+                state_new = policy.get_state(self.game)
+
+                policy.train_short_memory(state_old, action, reward, state_new, done)
+
+                policy.remember(state_old, action, reward, state_new, done)
+
+                if(done):
+                    print("episode completed")
+                    self.game.gameReset()
+                    policy.n_games += 1
+                    policy.train_long_memory()
+
+        finally:
+            self._training = False

@@ -12,7 +12,7 @@ class Runner:
 
         self.accelX = random.randint(-25,25)
         self.accelY = random.randint(-25,25)
-        self.policy = RunnerPolicy(1, 1, 1)
+        self.policy = RunnerPolicy(0, 0)
 
 
         #Declare runnerPolicy
@@ -29,10 +29,20 @@ class Runner:
     def modifyY(self, inputY):
         self.y = inputY
 
-    def modelInput(self):
+    def randomAccel(self):
         self.accelX = random.randint(-10,10)
         self.accelY = random.randint(-10,10)
     
+    def modelInput(self, action):
+        if(action == 0):
+            self.accelY = -10
+        elif action == 1:
+            self.accelY = +10
+        elif action == 2:
+            self.accelX = -10
+        elif action == 3:
+            self.accelX = +10
+
     def roundReset(self):
         self.x = 200
         self.y = 300
@@ -43,7 +53,7 @@ class Runner:
 
     def update(self, dt):
 
-        self.modelInput()
+        self.randomAccel()
 
         if(self.deltaX > 50):
             self.deltaX = 50

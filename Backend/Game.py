@@ -2,8 +2,10 @@ import eventlet
 from Runner import Runner
 from Tagger import Tagger
 from Wall import Wall
+import time
+import math
 
-class Game:
+class Game: #TODO: 
     def __init__(self):
         self.Mike = Runner(200, 300)
         self.Jason = Tagger(600,300)
@@ -12,8 +14,16 @@ class Game:
         self.runnerScore = 0
 
         self.ended = False
+        self.roundEnded = False;
+
+        self.t0 =  time.time()
+        self.timeLeft = 15;
 
         self.Walls = [Wall(400, 0, 20, 200), Wall(400, 400, 20, 200)]
+
+    def timerReset(self):
+        self.t0 = time.time()
+        self.timerLeft = 10
 
 
     def checkTag(self):
@@ -21,22 +31,30 @@ class Game:
           print("You can't run lil bro")
           self.taggerScore += 1
 
-          self.Mike.roundReset();
-          self.Jason.roundReset();
+          self.gameReset()
           return;
 
     def checkInBounds(self):
         if(self.Mike.retrieveX() > 800 or self.Mike.retrieveY() > 600 or self.Mike.retrieveX() < 0 or self.Mike.retrieveY() < 0):
-            self.Mike.roundReset();
-            self.Jason.roundReset();
+            self.gameReset()
             self.taggerScore += 1
             return;
 
         if(self.Jason.retrieveX() > 800 or self.Jason.retrieveY() > 600 or self.Jason.retrieveX() < 0 or self.Jason.retrieveY() < 0):
-            self.Mike.roundReset();
-            self.Jason.roundReset();
+            self.gameReset()
             self.runnerScore += 1
             return;
+
+    def checkTimer(self):
+        if(self.timeLeft <= 0):
+            self.gameReset()
+            self.runnerScore += 1
+            return;
+        
+    def gameReset(self):
+        self.Mike.roundReset();
+        self.Jason.roundReset();
+        self.timerReset()
 
     def checkWin(self):
         if(self.taggerScore >= 5):
@@ -60,8 +78,54 @@ class Game:
             self.Jason.update(dt)
             self.checkTag()
             self.checkInBounds()
+            self.checkTimer()
             self.checkWin()
-            
+            self.timeLeft = math.floor(10 - (time.time() - self.t0))
+    
+    def check_done(self):
+
+
+        if(self.Mike.retrieveX() > 800 or self.Mike.retrieveY() > 600 or self.Mike.retrieveX() < 0 or self.Mike.retrieveY() < 0):
+           return True;
+
+        elif(self.Jason.retrieveX() > 800 or self.Jason.retrieveY() > 600 or self.Jason.retrieveX() < 0 or self.Jason.retrieveY() < 0):
+           return True;
+
+        elif(abs(self.Mike.retrieveX() - self.Jason.retrieveX()) < 20 and abs(self.Mike.retrieveY() - self.Jason.retrieveY()) < 20):
+          return True;
+        
+        elif(self.timeLeft <= 0):
+          return True;
+
+        return False;
+
+    def get_taggerReward(self):
+        reward = 1
+
+        return reward;
+
+
+    def train_step(self, action): #TODO: Figure out if I can use the same game end checks as normal step
+        
+        
+        dt = 1/60
+
+        self.Mike.modelInput(action)
+        
+        self.Mike.update(dt)
+        self.Jason.update(dt)
+
+        done = self.check_done()
+
+        reward = self.get_taggerReward()
+
+        return reward, done
+            #Right here, when I figure out one of them scored, do I senda  message to runnerLoop to send large batch to model?
+
+
+
+
+
     def get_state(self):
 
         walls_data = [
@@ -81,6 +145,9 @@ class Game:
             'scores': {
                 'taggerScore': self.taggerScore, 
                 'runnerScore': self.runnerScore
+            },
+            'timer': {
+                'time': self.timeLeft
             }
         }
 
