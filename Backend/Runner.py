@@ -23,7 +23,7 @@ class Runner:
         self.policy = DQNPolicy(model, state_size, action_size)
 
         try:
-            self.policy.load("latest.pth")
+            self.policy.load("model.pth")
         except FileNotFoundError:
             print("Creating new Model File")
 

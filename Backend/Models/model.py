@@ -22,7 +22,7 @@ class LinearQNet(nn.Module):
 
         file = os.path.join(model_folder_path, file)
         torch.save(self.state_dict(), file)
-        print("Model Saved!")
+        
 
     def load(self, file="model.pth"):
         file = os.path.join('./model', file)

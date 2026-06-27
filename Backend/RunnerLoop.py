@@ -94,7 +94,7 @@ class RunnerLoop:
                 policy.train_long_memory()
                 policy.n_games += 1
 
-                policy.save("latest.pth")
+                policy.save("model.pth")
                 #TODO: In train.py add policy.load
                 # Add policy.save right here
                 # In policy create both functions which creates a file and saves weights and pams into it

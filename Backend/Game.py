@@ -109,13 +109,15 @@ class Game: #TODO:
         tX = self.Jason.retrieveX()
         tY = self.Jason.retrieveY()
 
+   
         rewardConst = 0.1
 
-        reward = abs(rX - tX) + abs(rY - tY) * rewardConst
+        reward = (abs(rX - tX) + abs(rY - tY)) * rewardConst
 
+        reward += 1
 
         if(rX > 800 or rX < 0 or rY > 600 or rY < 0):
-            reward -= 500
+            reward -= 1000
   
         elif(abs(rX - tX) < 20 and abs(rY-tY) < 20):
             reward -= 500
