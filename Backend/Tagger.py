@@ -9,8 +9,8 @@ class Tagger:
         self.deltaX = 0
         self.deltaY = 0
 
-        self.accelX = random.randint(-25,25)
-        self.accelY = random.randint(-25,25)
+        self.accelX = 0
+        self.accelY = 0
 
 
 
@@ -31,6 +31,17 @@ class Tagger:
     def modelInput(self):
         self.accelX = random.randint(-10,10)
         self.accelY = random.randint(-10,10)
+
+    def basicTaggerAI(self, rX, rY):
+        if(rX > self.x):
+            self.accelX = 2
+        else:
+            self.accelX = -2
+
+        if(rY > self.y):
+            self.accelY = 2
+        else:
+            self.accelY = -2
     
     def roundReset(self):
         self.x = 600
@@ -42,7 +53,7 @@ class Tagger:
 
     def update(self, dt):
 
-        self.modelInput()
+
 
         if(self.deltaX > 50):
             self.deltaX = 50

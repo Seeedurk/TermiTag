@@ -41,12 +41,20 @@ class RunnerLoop:
             self._gt = None
 
     def _run(self):
+        policy = self.game.Mike.policy
+        policy.epsilon = 0
         try:
             dt = 1.0 / self.tick_hz
             while self._running:
                 t0 = time.time()
 
-                self.game.step(dt)
+                state = policy.get_state(self.game)
+
+                action = policy.get_action(state)
+
+                print(action)
+
+                self.game.step(dt, action)
 
 
                 if self.on_state:
@@ -59,26 +67,40 @@ class RunnerLoop:
             
     def _trainingRun(self): #TODO: Add all the runner policy changing
         policy = self.game.Mike.policy
+
         try:
             while self._training:
 
-                state_old = policy.get_state(self.game)
+                self.game.gameReset()
+                done = False
 
-                action = policy.get_action(state_old)
+                while not done:
 
-                reward, done = self.game.train_step(action)
+                    state_old = policy.get_state(self.game)
 
-                state_new = policy.get_state(self.game)
+                    action = policy.get_action(state_old)
 
-                policy.train_short_memory(state_old, action, reward, state_new, done)
+                    reward, done = self.game.train_step(action)
 
-                policy.remember(state_old, action, reward, state_new, done)
+                    state_new = policy.get_state(self.game)
 
-                if(done):
-                    print("episode completed")
-                    self.game.gameReset()
-                    policy.n_games += 1
-                    policy.train_long_memory()
+                    policy.train_short_memory(state_old, action, reward, state_new, done)
+
+                    policy.remember(state_old, action, reward, state_new, done)
+
+
+                print("episode completed")
+                
+                policy.train_long_memory()
+                policy.n_games += 1
+
+                policy.save("latest.pth")
+                #TODO: In train.py add policy.load
+                # Add policy.save right here
+                # In policy create both functions which creates a file and saves weights and pams into it
+
+        except KeyboardInterrupt:
+            print("Training ended")
 
         finally:
             self._training = False

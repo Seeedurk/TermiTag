@@ -57,16 +57,16 @@ class Game: #TODO:
         self.timerReset()
 
     def checkWin(self):
-        if(self.taggerScore >= 5):
+        if(self.taggerScore >= 25):
             print("Tagger wins")
             self.ended = True
             return;
-        if(self.runnerScore >= 5):
+        if(self.runnerScore >= 25):
             print("Runner wins")
             self.ended = True
             return;
 
-    def step(self, dt):
+    def step(self, dt, action):
         #Set up game logic, use absolute value to see if runner is in range of tagger
         #Create random destruction objects that tagger and runner avoid
         #add function to both runner and tagger to get their own info, then a function to retrieve an actions 
@@ -74,6 +74,10 @@ class Game: #TODO:
 
 
         if(self.ended == False):
+
+            self.Mike.modelInput(action)
+            self.Jason.basicTaggerAI(self.Mike.retrieveX(), self.Mike.retrieveY())
+
             self.Mike.update(dt)
             self.Jason.update(dt)
             self.checkTag()
@@ -99,28 +103,43 @@ class Game: #TODO:
 
         return False;
 
-    def get_taggerReward(self):
-        reward = 1
+    def get_runnerReward(self): #TODO: Fully implement Tagger Reward
+        rX = self.Mike.retrieveX()
+        rY = self.Mike.retrieveY()
+        tX = self.Jason.retrieveX()
+        tY = self.Jason.retrieveY()
+
+        rewardConst = 0.1
+
+        reward = abs(rX - tX) + abs(rY - tY) * rewardConst
+
+
+        if(rX > 800 or rX < 0 or rY > 600 or rY < 0):
+            reward -= 500
+  
+        elif(abs(rX - tX) < 20 and abs(rY-tY) < 20):
+            reward -= 500
 
         return reward;
 
 
-    def train_step(self, action): #TODO: Figure out if I can use the same game end checks as normal step
+    def train_step(self, action): 
         
         
         dt = 1/60
 
         self.Mike.modelInput(action)
+        self.Jason.basicTaggerAI(self.Mike.retrieveX(), self.Mike.retrieveY())
         
         self.Mike.update(dt)
         self.Jason.update(dt)
 
+        
         done = self.check_done()
-
-        reward = self.get_taggerReward()
+        reward = self.get_runnerReward()
 
         return reward, done
-            #Right here, when I figure out one of them scored, do I senda  message to runnerLoop to send large batch to model?
+            
 
 
 
