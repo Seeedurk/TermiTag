@@ -5,8 +5,8 @@ from collections import deque
 from Policy.QTrainer import QTrainer
 import os
 
-MAX_MEMORY = 100_000
-BATCH_SIZE = 1000
+MAX_MEMORY = 500_000
+BATCH_SIZE = 64
 LR = 0.001
 
 class DQNPolicy:
@@ -39,18 +39,18 @@ class DQNPolicy:
 
         distance_x = tagger_x - runner_x
         distance_y = tagger_y - runner_y
+        left = runner_x / 800
+        right = (800 - runner_x) / 800
+        top = runner_y / 600
+        bottom = (600 - runner_y) / 600
 
         state = [
-            runner_x,
-            runner_y,
-            runner_vx,
-            runner_vy,
-            tagger_x,
-            tagger_y,
-            tagger_vx,
-            tagger_vy,
-            distance_x,
-            distance_y
+            runner_x / 800, runner_y / 600,
+            runner_vx / 50, runner_vy / 50,
+            tagger_x / 800, tagger_y / 600,
+            tagger_vx / 50, tagger_vy / 50,
+            distance_x / 800, distance_y / 600,     
+            left, right, top, bottom
         ]
 
         return np.array(state, dtype=float)
@@ -60,6 +60,10 @@ class DQNPolicy:
         self.trainer.train_step(state, action, reward, next_state, done);
 
     def train_long_memory(self):
+
+        if len(self.memory) == 0:
+            return
+
         if len(self.memory) > BATCH_SIZE:
             smaller_sample = random.sample(self.memory, BATCH_SIZE)
         else:
@@ -74,20 +78,22 @@ class DQNPolicy:
 
 
     def get_action(self, state):
-        self.epsilon = max(5, 250 - self.n_games)
+
+        eps = max(0.05, 1.0 - self.n_games / 1000)
 
         state_tensor = torch.tensor(state, dtype=torch.float32)
-        if(random.randint(0, 200) < self.epsilon):
-            action = random.randint(0,3)
-            return action
 
-        QVals = self.model(state_tensor)
-        action = torch.argmax(QVals).item()
-        return action
+        if random.random() < eps:
+            return random.randint(0, 3)
+
+        with torch.no_grad():
+            qvals = self.model(state_tensor)
+
+        return torch.argmax(qvals).item()
 
     def save(self, file='model.pth'):
         self.model.save(file)
-        print(self.n_games)
+        #print(self.n_games)
         metaData = {
             "n_games": self.n_games
             }

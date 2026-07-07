@@ -13,6 +13,7 @@ function Canvas({ width, height, objects }) {
 
     const scoreObject = useRef({ taggerScore: 0, runnerScore: 0 });
     const timer = useRef(0);
+    const wallsRef = useRef([]);
 
     //I have much more comments in this section cuz the canvas code is rather complex
 
@@ -33,6 +34,11 @@ function Canvas({ width, height, objects }) {
             scoreObject.current.runnerScore = objects.scores.runnerScore;
 
             timer.current = objects.timer.time;
+
+            if (objects.walls) {
+                wallsRef.current = objects.walls;
+            }
+
         }
 
     }, [objects]);
@@ -73,6 +79,8 @@ function Canvas({ width, height, objects }) {
             const t = Math.min((Date.now() - lastUpdateRef.current) / 33, 1);
             const interpX = prevPosRef.current.x + (nextPosRef.current.x - prevPosRef.current.x) * t;
             const interpY = prevPosRef.current.y + (nextPosRef.current.y - prevPosRef.current.y) * t;
+
+
 
             //Drawing the interpolated Runner, must switch color
             context.save();
@@ -126,6 +134,25 @@ function Canvas({ width, height, objects }) {
             context.arc(secondObject.current.x + 15, secondObject.current.y + 15, 5, 0, Math.PI * 2);
             context.fill();
 
+            //Drawing each wall
+            for (const wall of wallsRef.current) {
+                context.save();
+
+                context.shadowColor = '#ff0000';
+                context.shadowBlur = 8
+
+                context.fillStyle = '#1a0000';
+                context.fillRect(wall.x, wall.y, wall.width, wall.height);
+
+                context.shadowBlur = 0;
+                context.strokeStyle = '#ff2e2e';
+                context.lineWidth = 2;
+                context.strokeRect(wall.x, wall.y, wall.width, wall.height);
+
+                context.restore();
+
+            }
+
             // Label for Tagger
             context.save();
             context.font = '12px sans-serif';
@@ -151,6 +178,8 @@ function Canvas({ width, height, objects }) {
             context.font = '20px sans-serif';
             context.fillText(timer.current, 395, 30);
             animationId = requestAnimationFrame(loop);
+
+
         }
 
         animationId = requestAnimationFrame(loop);

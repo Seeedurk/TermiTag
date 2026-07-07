@@ -2,15 +2,23 @@ import torch
 import torch.nn as nn
 import torch.optim as optim
 import torch.nn.functional as F
+import copy
 
 class QTrainer:
     def __init__(self, model, lr, gamma):
         self.model = model
+        self.target_model = copy.deepcopy(model)
+        self.target_model.eval()
         self.lr = lr
         self.gamma = gamma
         self.optimizer = optim.Adam(model.parameters(), lr=self.lr)
-        self.criterion = nn.MSELoss()
+        self.criterion = nn.SmoothL1Loss() #Instead of squaring loss, it checks if its large and just applies linearly if so
 
+        self.update_counter = 0
+        self.target_update_frequency = 1000
+
+    def update_target_network(self):
+        self.target_model.load_state_dict(self.model.state_dict())
 
     def train_step(self, state, action, reward, next_state, done):
         #Convert to tensors taht can be used for pyTorch, but not boolean Since I just use that as a normal boolean
@@ -36,14 +44,26 @@ class QTrainer:
             correctedQValue = reward[index]
             #Of course you can't predict how good future options will be when the game already ended
             if not done[index]:
-                correctedQValue = reward[index] + self.gamma * torch.max(self.model(next_state[index]))
+                with torch.no_grad():
+
+                    #Get newer models best action
+                    best_action_idx = torch.argmax(self.model(next_state[index])) 
+
+                    #Use older models weights to update
+                    correctedQValue = reward[index] + self.gamma * self.target_model(next_state[index])[best_action_idx] 
+
             target[index][int(action[index])] = correctedQValue
 
         loss = self.criterion(currentModelPrediction, target)
 
         self.optimizer.zero_grad();
         loss.backward()
+        torch.nn.utils.clip_grad_norm_(self.model.parameters(), max_norm=10)
         self.optimizer.step()
+
+        self.update_counter += 1
+        if self.update_counter % self.target_update_frequency == 0:
+            self.update_target_network()
 
 
             

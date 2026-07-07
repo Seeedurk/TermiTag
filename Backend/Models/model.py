@@ -26,7 +26,7 @@ class LinearQNet(nn.Module):
 
     def load(self, file="model.pth"):
         file = os.path.join('./model', file)
-        if(os.path.exists):
+        if os.path.exists(file):
             self.load_state_dict(torch.load(file))
             self.eval()
         
