@@ -14,7 +14,7 @@ class DQNPolicy:
     def __init__(self, model, state_size, action_size=4):
         self.n_games = 0
         self.epsilon = 0 #randomness, makes it so the AI actually does anything new
-        self.gamma = 0.9 #discount rate
+        self.gamma = 0.99 #discount rate
         self.memory = deque(maxlen=MAX_MEMORY)
 
         self.model = model
@@ -23,6 +23,19 @@ class DQNPolicy:
         #self.optimizer = torch.optim.Adam(self.model.parameters(), lr=LR)
         #self.criterion = torch.nn.MSELoss()
 
+    def processWall(self, wall, runner_x, runner_y):
+        if wall is None:
+            return [0.0, 0.0, 0.0, 0.0]
+
+
+        return [
+            (wall.x - runner_x) / 800,
+            (wall.y - runner_y) / 600,
+            (wall.x + wall.width - runner_x) / 800, 
+            (wall.y + wall.height - runner_y) / 600
+        ]
+
+    #Remember to change input size for model
     def get_state(self, game):
         runner = game.Mike
         tagger = game.Jason
@@ -37,6 +50,8 @@ class DQNPolicy:
         tagger_vx = tagger.deltaX
         tagger_vy = tagger.deltaY
 
+        time_left = game.timeLeft
+
         distance_x = tagger_x - runner_x
         distance_y = tagger_y - runner_y
         left = runner_x / 800
@@ -44,14 +59,42 @@ class DQNPolicy:
         top = runner_y / 600
         bottom = (600 - runner_y) / 600
 
+        nearestWall1 = nearestWall2 = None
+        dist1 = dist2 = float("inf")
+            
+        for wall in game.Walls:
+             
+            closestX = max(wall.x, min(runner_x, wall.x + wall.width))
+            closestY = max(wall.y, min(runner_y, wall.y + wall.height))
+
+            dx = closestX - runner_x
+            dy = closestY - runner_y
+
+            distance = dx * dx + dy * dy
+
+            if distance < dist1:
+                nearestWall2 = nearestWall1
+                nearestWall1 = wall
+
+                dist2 = dist1
+                dist1 = distance
+            elif distance < dist2:
+                nearestWall2 = wall
+                dist2 = distance
+
+        
         state = [
             runner_x / 800, runner_y / 600,
-            runner_vx / 50, runner_vy / 50,
+            runner_vx / 6, runner_vy / 6,
             tagger_x / 800, tagger_y / 600,
-            tagger_vx / 50, tagger_vy / 50,
+            tagger_vx / 6, tagger_vy / 6,
             distance_x / 800, distance_y / 600,     
-            left, right, top, bottom
+            left, right, top, bottom,
+            time_left / 10.0
         ]
+
+        state.extend(self.processWall(nearestWall1, runner_x, runner_y))
+        state.extend(self.processWall(nearestWall2, runner_x, runner_y))
 
         return np.array(state, dtype=float)
 
@@ -79,7 +122,7 @@ class DQNPolicy:
 
     def get_action(self, state):
 
-        eps = max(0.05, 1.0 - self.n_games / 1000)
+        eps = max(0.05, 1.0 - self.n_games / 2000)
 
         state_tensor = torch.tensor(state, dtype=torch.float32)
 

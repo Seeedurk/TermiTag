@@ -1,7 +1,22 @@
+/*
+Old canvas css
 .canvas {
     display: block;
     width: 100%;
     height: auto;
+    background: transparent;
+    border-radius: 8px;
+    box-sizing: border-box;
+    -webkit-user-select: none;
+    user-select: none;
+}
+*/ 
+
+.canvas {
+    display: block;
+    width: 100%;
+    max-width: 800px;
+    aspect-ratio: 800 / 600;
     background: transparent;
     border-radius: 8px;
     box-sizing: border-box;

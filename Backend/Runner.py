@@ -15,9 +15,9 @@ class Runner:
         self.accelX = 0
         self.accelY = 0
 
-        state_size=14
+        state_size=23
         action_size=4
-        hidden_size=256
+        hidden_size=128
         
         model = LinearQNet(state_size, hidden_size, action_size)
         self.policy = DQNPolicy(model, state_size, action_size)
@@ -47,16 +47,17 @@ class Runner:
 
         if(action == 0):
             self.accelX = 0
-            self.accelY = -20
+            self.accelY = -0.5
         elif action == 1:
             self.accelX = 0
-            self.accelY = +20
+            self.accelY = +0.5
         elif action == 2:
-            self.accelX = -20
+            self.accelX = -0.5
             self.accelY = 0
         elif action == 3:
-            self.accelX = +20
+            self.accelX = +0.5
             self.accelY = 0
+
 
     def roundReset(self):
         self.x = 100
@@ -70,11 +71,11 @@ class Runner:
 
 
 
-        self.deltaX += self.accelX * dt
-        self.deltaY += self.accelY * dt
+        self.deltaX += self.accelX
+        self.deltaY += self.accelY
 
-        self.deltaX = max(-50, min(50, self.deltaX))
-        self.deltaY = max(-50, min(50, self.deltaY))
+        self.deltaX = max(-6, min(6, self.deltaX))
+        self.deltaY = max(-6, min(6, self.deltaY))
         #Velocity damping for friction
         self.deltaX *= 0.98
         self.deltaY *= 0.98

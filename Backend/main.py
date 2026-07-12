@@ -25,6 +25,7 @@ socketio_app = app
 @socketio.on('connect')
 def handle_connect():
     sid = request.sid
+    print(f"CONNECT: sid={sid}, existing sessions={len(games)}")
     print(f'Client connected: {sid}')
 
     game = Game()

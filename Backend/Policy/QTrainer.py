@@ -21,7 +21,7 @@ class QTrainer:
         self.target_model.load_state_dict(self.model.state_dict())
 
     def train_step(self, state, action, reward, next_state, done):
-        #Convert to tensors taht can be used for pyTorch, but not boolean Since I just use that as a normal boolean
+        #Convert to tensors taht can be used for pyTorch, but not done Since I just use that as a normal boolean
         state = torch.tensor(state, dtype=torch.float)
         next_state = torch.tensor(next_state, dtype=torch.float)
         action = torch.tensor(action, dtype=torch.long)
@@ -49,14 +49,14 @@ class QTrainer:
                     #Get newer models best action
                     best_action_idx = torch.argmax(self.model(next_state[index])) 
 
-                    #Use older models weights to update
+                    #Use older models weights to update, breaks feedback loop
                     correctedQValue = reward[index] + self.gamma * self.target_model(next_state[index])[best_action_idx] 
 
             target[index][int(action[index])] = correctedQValue
 
         loss = self.criterion(currentModelPrediction, target)
 
-        self.optimizer.zero_grad();
+        self.optimizer.zero_grad()
         loss.backward()
         torch.nn.utils.clip_grad_norm_(self.model.parameters(), max_norm=10)
         self.optimizer.step()

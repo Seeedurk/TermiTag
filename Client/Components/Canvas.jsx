@@ -89,13 +89,13 @@ function Canvas({ width, height, objects }) {
             context.fillStyle = '#4da6ff';
 
             context.beginPath();
-            context.arc(interpX + 15, interpY + 15, 15, 0, Math.PI * 2);
+            context.arc(interpX, interpY, 15, 0, Math.PI * 2);
             context.fill();
             context.restore();
             //small inner circle
             context.fillStyle = '#fff';
             context.beginPath();
-            context.arc(interpX + 15, interpY + 15, 5, 0, Math.PI * 2);
+            context.arc(interpX, interpY, 5, 0, Math.PI * 2);
             context.fill();
 
             // Label for Runner
@@ -105,8 +105,8 @@ function Canvas({ width, height, objects }) {
             context.textBaseline = 'bottom';
             // small semi-transparent background for legibility
             const runnerLabel = 'Runner';
-            const rx = interpX + 15;
-            const ry = interpY - 4;
+            const rx = interpX;
+            const ry = interpY - 19;
             const padding = 6;
             const metrics = context.measureText(runnerLabel);
             const labelW = metrics.width + padding;
@@ -125,13 +125,13 @@ function Canvas({ width, height, objects }) {
             context.shadowBlur = 18;
             context.fillStyle = '#ff4d4f';
             context.beginPath();
-            context.arc(secondObject.current.x + 15, secondObject.current.y + 15, 15, 0, Math.PI * 2);
+            context.arc(secondObject.current.x, secondObject.current.y, 15, 0, Math.PI * 2);
             context.fill();
             context.restore();
             //Small Chaser circle
             context.fillStyle = '#fff';
             context.beginPath();
-            context.arc(secondObject.current.x + 15, secondObject.current.y + 15, 5, 0, Math.PI * 2);
+            context.arc(secondObject.current.x, secondObject.current.y, 5, 0, Math.PI * 2);
             context.fill();
 
             //Drawing each wall
@@ -159,8 +159,8 @@ function Canvas({ width, height, objects }) {
             context.textAlign = 'center';
             context.textBaseline = 'bottom';
             const chaserLabel = 'Tagger';
-            const cx = secondObject.current.x + 15;
-            const cy = secondObject.current.y - 4;
+            const cx = secondObject.current.x;
+            const cy = secondObject.current.y - 19;
             const paddingC = 6;
             const metricsC = context.measureText(chaserLabel);
             const labelWC = metricsC.width + paddingC;
