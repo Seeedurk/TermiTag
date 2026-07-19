@@ -10,7 +10,8 @@ class RunnerLoop:
         self.on_state = on_state
         self._running = False
         self._gt = None
-        self._training = False;
+        self._training = False
+        self.paused = False
 
     def start(self):
         if self._running:
@@ -47,6 +48,13 @@ class RunnerLoop:
         try:
             dt = 1.0 / self.tick_hz
             while self._running:
+                
+                if self.paused:
+                    pause_start = time.time()
+                    while self.paused:
+                        eventlet.sleep(0.05)
+                    self.game.t0 += time.time() - pause_start   
+                
                 t0 = time.time()
 
                 state = policy.get_state(self.game)
@@ -56,7 +64,6 @@ class RunnerLoop:
 
                 self.game.step(dt, action)
 
-
                 if self.on_state:
                    self.on_state(self.game.get_state())
                 elapsed = time.time() - t0
@@ -65,49 +72,7 @@ class RunnerLoop:
             self._running = False
             self._gt = None
 
-    def _log_fixed_state_action(self, policy):
-        # Fixed diagnostic state: runner at start pos (100,300), tagger at start pos (700,300),
-        # both stationary, distance_x=600, distance_y=0.
-        # NOTE: must match whatever feature order/scaling DQNPolicy.get_state currently uses.
-        # If you normalize get_state later, normalize this the same way or the comparison is meaningless.
-        fixed_state = np.array([
-            400/800,   # runner_x
-            300/600,   # runner_y
-            0,         # runner_vx
-            0,         # runner_vy
 
-            # ---------- Tagger (approaching from the right) ----------
-            600/800,   # tagger_x
-            300/600,   # tagger_y
-            0,         # tagger_vx
-            0,         # tagger_vy
-
-            # ---------- Relative distance ----------
-            (600-400)/800,  # distance_x
-            0,              # distance_y
-
-            # ---------- Border distances ----------
-            400/800,        # left
-            (800-400)/800,  # right
-            300/600,        # top
-            (600-300)/600,  # bottom
-
-            # ---------- Wall 1 (none nearby) ----------
-            0, 0, 0, 0,
-
-            # ---------- Wall 2 (none nearby) ----------
-            0, 0, 0, 0,
-
-            1
-
-
-        ], dtype=np.float32)
-        state_tensor = torch.tensor(fixed_state, dtype=torch.float32)
-        with torch.no_grad():
-            q_values = policy.model(state_tensor)
-        action = torch.argmax(q_values).item()
-        print(f"[diag] n_games={policy.n_games} fixed_state_action={action} q={q_values.tolist()}")
-            
     def _trainingRun(self): #TODO: Add all the runner policy changing
         policy = self.game.Mike.policy
         survival_history = []

@@ -51,7 +51,22 @@ def handle_init(data):
     emit('init_response', {'message': 'Initialization complete', 'position': 150}, room=sid)
     
 
- 
+@socketio.on('pause')
+def handle_pause(data):
+    sid = request.sid 
+    if sid in games:
+        selectedEntry = games[sid]
+        selectedRunner = selectedEntry.get('runner')
+        selectedRunner.paused = data
+
+@socketio.on('reset')
+def handle_reset():
+    sid = request.sid
+    if sid in games:
+        selectedEntry = games[sid]
+        selectedGame = selectedEntry.get('game')
+        selectedGame.gameReset()
+
 
 if __name__ == '__main__':
     

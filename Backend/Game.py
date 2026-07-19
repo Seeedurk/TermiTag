@@ -66,7 +66,7 @@ class Game: #TODO:
         self.Mike.roundReset();
         self.Jason.roundReset();
         self.timerReset()
-        self.createWalls(2);
+        self.createWalls(random.randint(0, 5));
         self.prev_potential = self._current_potential()
         self.reward_components = {"potential": 0.0, "terminal": 0.0}
 
@@ -81,14 +81,14 @@ class Game: #TODO:
             return;
 
     def createWalls(self, number):
-        #self.Walls = []
+        self.Walls = []
         for i in range(number):
             x = random.randint(150, 500)
             y = random.randint(100, 500)
             width = random.randint(50, 150)
             height = random.randint(50, 150)
 
-            self.Walls[i] = Wall(x, y, width, height)
+            self.Walls.append(Wall(x, y, width, height))
 
     def checkWalls(self):
         for wall in self.Walls:
@@ -123,7 +123,6 @@ class Game: #TODO:
             self.checkWalls()
             self.checkTimer()
             self.checkWin()
-            print(self.Mike.retrieveX())
             self.timeLeft = math.floor(10 - (time.time() - self.t0))
     
     def check_done(self):

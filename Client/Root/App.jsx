@@ -56,11 +56,13 @@ function App() {
 
 
 
-                <h1>Simulation only on Mobile, Use Laptop to play against AI</h1>
+                <h1>Neural Network Tag</h1>
+                <h2>This is an AI, and no it's not chatGPT</h2>
                 <p className="read-the-docs">
-                        This project is meant to be a showcase of AI taggers playing against each other in a simple 2D environment.
-                        Using WebSockets and Neural Networks, their fight can be rendered here in real-time.
-                        Use the Menu on the right to select the parameters of the game and enjoy!
+                        What you're currently seeing is a Neural Network play against a Neural Network.
+                        The specific model used to train these agents is a double DQN utilizing mind numbing but relatively simple AI theory.
+                        If you take a look at the code you can see the training loop, architecture, and tools used to create these AI's.
+                        As well as that you can use the functionalities of the frontend to see stats like loss, reward, and more. Have fun!
                 </p>
 
                     

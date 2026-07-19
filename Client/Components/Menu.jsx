@@ -1,9 +1,11 @@
 import { useState, useEffect } from 'react';
 import '../Styles/Menu.css';
 import LossGraph from '../Components/LossGraph';
+import socket from '../Components/Socket';
 
 function Menu() {
     const [open, setOpen] = useState(true);
+    const [paused, setPause] = useState(false);
 
     useEffect(() => {
         const mq = window.matchMedia('(max-width: 700px)');
@@ -17,6 +19,15 @@ function Menu() {
         };
     }, []);
 
+    const handlePause = () => {
+        socket.emit('pause', !paused)
+        setPause(!paused)
+    }
+
+    const handleReset = () => {
+        socket.emit('reset')
+    }
+
     return (
         <div className={`Menu ${open ? 'open' : 'closed'}`} aria-expanded={open}>
             <button className="menu-toggle" onClick={() => setOpen((v) => !v)} aria-label="Toggle menu">
@@ -26,7 +37,7 @@ function Menu() {
             <div className="menu-body">
                 <h2>Menu</h2>
                 <p>This will be where both statisics and game customization will go.</p>
-                <button style={{
+                <button onClick={handlePause} style={{
                     backgroundColor: "red",
                     color: "white",
                     border: "none",
@@ -35,8 +46,8 @@ function Menu() {
                     boxShadow: "0 0 12px rgba(255, 0, 0, 0.6)",
                     width: "30%"
 
-                 }}>Pause</button>
-                <button style={{
+                 }}>{paused ? "Resume" : "Pause"}</button>
+                <button onClick = {handleReset} style={{
                     backgroundColor: "black",
                     color: "white",
                     border: "none",
@@ -45,11 +56,11 @@ function Menu() {
                     boxShadow: "0 0 12px rgba(0, 0, 0, 0.6)",
                     width: "30%"
                 }}>Restart</button>
-                <button style={{width:"40%", height: "5%"} }>Edit Paras</button>
+                <button style={{width:"40%", height: "5%"} }>Settings</button>
 
                 <div className="stat-div" >
                 <h3>Statistics - add all to bottom</h3>
-                <LossGraph data={[
+                <LossGraph key="loss-graph-1" data={[
                     { step: 1, loss: 0.9 },
                     { step: 2, loss: 0.7 },
                     { step: 3, loss: 0.5 },
@@ -60,7 +71,7 @@ function Menu() {
                     { step: 8, loss: 0.25 }
                 ]} />
 
-                <LossGraph data={[
+                <LossGraph key="loss-graph-2" data={[
                     { step: 1, loss: 0.9 },
                     { step: 2, loss: 0.7 },
                     { step: 3, loss: 0.5 },
