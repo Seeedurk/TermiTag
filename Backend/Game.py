@@ -114,7 +114,7 @@ class Game: #TODO:
         if(self.ended == False):
 
             self.Mike.modelInput(action)
-            self.Jason.basicTaggerAI(self.Mike.retrieveX(), self.Mike.retrieveY(), self.Walls)
+            self.Jason.lvlThreeTaggerAI(self.Mike.retrieveX(), self.Mike.retrieveY(), self.Walls)
 
             self.Mike.update(dt)
             self.Jason.update(dt)
@@ -173,7 +173,6 @@ class Game: #TODO:
         tX, tY = self.Jason.retrieveX(), self.Jason.retrieveY()
         dist = math.hypot(rX - tX, rY - tY)
 
-        # ---- Terminal outcomes: one consistent magnitude, checked first ----
         if rX > 800 or rX < 0 or rY > 600 or rY < 0:
             self.reward_components["terminal"] += -30
             return -30
@@ -194,30 +193,26 @@ class Game: #TODO:
                 self.reward_components["terminal"] += 30
                 return 30
 
-        # ---- Potential function: single "how safe is this position" score, roughly [-1, 1] ----
-        # Ng, Harada & Russell (1999): shaping of the form gamma*Phi(s') - Phi(s) preserves
-        # the optimal policy while densifying the reward signal. Because it telescopes across
-        # a trajectory, it cannot accumulate unboundedly with episode length the way independent
-        # per-frame terms (old delta/edge/wall) did.
+
         SAFE_DIST = 300.0
-        tagger_score = min(dist, SAFE_DIST) / SAFE_DIST  # 0 (on top of tagger) to 1 (far away)
+        tagger_score = min(dist, SAFE_DIST) / SAFE_DIST 
 
         margin = min(rX, 800 - rX, rY, 600 - rY)
         edge_threshold = 80
-        edge_danger = max(0.0, (edge_threshold - margin) / edge_threshold)  # 0 to 1
+        edge_danger = max(0.0, (edge_threshold - margin) / edge_threshold)  
 
         wall_margin = min(
             (math.hypot(rX - max(w.x, min(rX, w.x + w.width)), rY - max(w.y, min(rY, w.y + w.height))))
             for w in self.Walls
         ) if self.Walls else 999
         wall_threshold = 60
-        wall_danger = max(0.0, (wall_threshold - wall_margin) / wall_threshold)  # 0 to 1
+        wall_danger = max(0.0, (wall_threshold - wall_margin) / wall_threshold)  
 
-        hazard = max(edge_danger, wall_danger)  # worse of the two, don't stack them
-        new_potential = tagger_score - hazard   # roughly [-1, 1]: high = safe & far, low = in danger
+        hazard = max(edge_danger, wall_danger)  
+        new_potential = tagger_score - hazard   
 
-        GAMMA = self.Mike.policy.gamma  # match the agent's own discount factor, per the PBRS formula
-        SHAPING_SCALE = 10.0            # single tunable knob controlling shaping magnitude
+        GAMMA = self.Mike.policy.gamma  
+        SHAPING_SCALE = 10.0            
 
         shaping_reward = (GAMMA * new_potential - self.prev_potential) * SHAPING_SCALE
         self.prev_potential = new_potential
@@ -233,7 +228,7 @@ class Game: #TODO:
         dt = 1/60
 
         self.Mike.modelInput(action)
-        self.Jason.basicTaggerAI(self.Mike.retrieveX(), self.Mike.retrieveY(), self.Walls)
+        self.Jason.lvlThreeTaggerAI(self.Mike.retrieveX(), self.Mike.retrieveY(), self.Walls)
         
         self.Mike.update(dt)
 
@@ -276,6 +271,8 @@ class Game: #TODO:
             'timer': {
                 'time': self.timeLeft
             },
-            'walls': walls_data
+            'walls': walls_data,
+            'distance': math.hypot(self.Mike.retrieveX() - self.Jason.retrieveX(), self.Mike.retrieveY() - self.Jason.retrieveY()),
+            'reward': self.get_runnerReward()
         }
 

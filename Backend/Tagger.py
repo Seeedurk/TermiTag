@@ -71,7 +71,7 @@ class Tagger:
 
         return -distance
 
-    def basicTaggerAI(self, rX, rY, walls):
+    def lvlThreeTaggerAI(self, rX, rY, walls):
 
         accConst = 0.25
         

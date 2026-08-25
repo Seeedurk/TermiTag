@@ -1,6 +1,6 @@
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 
-function LossGraph({data}) {
+function DistanceGraph({data}) {
 	return (
 		<LineChart width={300} height={200} data={data}>
 			<CartesianGrid strokeDasharray="3 3" />
@@ -9,7 +9,7 @@ function LossGraph({data}) {
 			<Tooltip />
 			<Line 
 				type="monotone" 
-				dataKey="loss" 
+				dataKey="distance" 
 				stroke="#4da6ff" 
 				strokeWidth={2} 
 				dot={false}
@@ -19,4 +19,4 @@ function LossGraph({data}) {
 	)
 }
 
-export default LossGraph;
+export default DistanceGraph;

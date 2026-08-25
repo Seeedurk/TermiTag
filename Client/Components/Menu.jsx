@@ -1,11 +1,14 @@
 import { useState, useEffect } from 'react';
 import '../Styles/Menu.css';
-import LossGraph from '../Components/LossGraph';
+import DistanceGraph from './DistanceGraph';
+import RewardGraph from './RewardGraph';
 import socket from '../Components/Socket';
 
-function Menu() {
+function Menu( { rewardGraphData, distanceGraphData } ) {
     const [open, setOpen] = useState(true);
     const [paused, setPause] = useState(false);
+
+
 
     useEffect(() => {
         const mq = window.matchMedia('(max-width: 700px)');
@@ -59,28 +62,10 @@ function Menu() {
                 <button style={{width:"40%", height: "5%"} }>Settings</button>
 
                 <div className="stat-div" >
-                <h3>Statistics - add all to bottom</h3>
-                <LossGraph key="loss-graph-1" data={[
-                    { step: 1, loss: 0.9 },
-                    { step: 2, loss: 0.7 },
-                    { step: 3, loss: 0.5 },
-                    { step: 4, loss: 0.4 },
-                    { step: 5, loss: 0.35 },
-                    { step: 6, loss: 0.3 },
-                    { step: 7, loss: 0.28 },
-                    { step: 8, loss: 0.25 }
-                ]} />
+                <h3>Statistics - Distance & Reward</h3>
+                <DistanceGraph key="distance-graph-1" data={distanceGraphData} />
 
-                <LossGraph key="loss-graph-2" data={[
-                    { step: 1, loss: 0.9 },
-                    { step: 2, loss: 0.7 },
-                    { step: 3, loss: 0.5 },
-                    { step: 4, loss: 0.4 },
-                    { step: 5, loss: 0.35 },
-                    { step: 6, loss: 0.3 },
-                    { step: 7, loss: 0.28 },
-                    { step: 8, loss: 0.25 }
-                ]} />
+                <RewardGraph key="reward-graph-2" data={rewardGraphData} />
                 </div>
             </div>
         </div>
