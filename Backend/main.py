@@ -42,14 +42,29 @@ def handle_disconnect():
         entry = games[sid]
         runner = entry.get('runner')
         if runner:
-            runner.stop()
+            try:
+                runner.stop()
+            except Exception:
+                pass
         del games[sid]
 
 @socketio.on('init')
 def handle_init(data):
     sid = request.sid
     emit('init_response', {'message': 'Initialization complete', 'position': 150}, room=sid)
-    
+    if sid in games:
+        emit('settings_response', games[sid]['game'].settings, room=sid)
+
+@socketio.on('settings')
+@socketio.on('settingsChange')
+def handle_settings(data):
+    sid = request.sid
+    if sid not in games:
+        return
+
+    game = games[sid]['game']
+    game.apply_settings(data)
+    emit('settings_response', game.settings, room=sid)
 
 @socketio.on('pause')
 def handle_pause(data):

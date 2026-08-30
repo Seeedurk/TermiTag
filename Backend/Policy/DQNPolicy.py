@@ -134,19 +134,30 @@ class DQNPolicy:
 
         return torch.argmax(qvals).item()
 
-    def save(self, file='model.pth'):
-        self.model.save(file)
-        #print(self.n_games)
-        metaData = {
-            "n_games": self.n_games
-            }
-        torch.save(metaData, "./model/meta.pth")
+    def _looks_like_state_dict(self, payload):
+        if not isinstance(payload, dict):
+            return False
+        return any(str(key).endswith('.weight') or str(key).endswith('.bias') for key in payload.keys())
 
-    def load(self, file='model.pth'):
-        self.model.load(file)
-        meta_path = "./model/meta.pth"
+    def save(self, file='model.pth', meta_path='./model/meta.pth'):
+        self.model.save(file)
+        os.makedirs(os.path.dirname(meta_path) or '.', exist_ok=True)
+        metaData = {"n_games": self.n_games}
+        torch.save(metaData, meta_path)
+
+    def load(self, file='model.pth', meta_path='./model/meta.pth'):
+        model_path = os.path.join('./model', file)
+        if os.path.exists(model_path):
+            payload = torch.load(model_path, map_location='cpu')
+            if self._looks_like_state_dict(payload):
+                self.model.load_state_dict(payload)
+                self.model.eval()
+                print(f"Loaded model weights: {file}")
+            else:
+                print(f"Skipped metadata file in model slot: {file}")
+
         if os.path.exists(meta_path):
-            meta = torch.load(meta_path)
+            meta = torch.load(meta_path, map_location='cpu')
             self.n_games = meta.get("n_games", 0)
             print(f"Loaded metadata: {self.n_games} episodes")
         else:
@@ -154,8 +165,7 @@ class DQNPolicy:
 
 
 
-    def test(self):
-        return;
+
 
     
 

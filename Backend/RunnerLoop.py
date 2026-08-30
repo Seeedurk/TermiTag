@@ -30,17 +30,17 @@ class RunnerLoop:
 
     def stop(self, timeout=2.0):
         self._running = False
-        if not self._gt:
+        self.paused = False
+        gt = self._gt
+        self._gt = None
+
+        if not gt:
             return
+
         try:
-            eventlet.with_timeout(timeout, self._gt.wait)
+            gt.kill()
         except Exception:
-            try:
-                self._gt.kill()
-            except Exception:
-                pass
-        finally:
-            self._gt = None
+            pass
 
     def _run(self):
         policy = self.game.Mike.policy

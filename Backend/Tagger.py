@@ -33,14 +33,13 @@ class Tagger:
         self.accelX = random.randint(-10,10)
         self.accelY = random.randint(-10,10)
 
-    def evaluateMove(self, accelX, accelY, rX, rY, walls):
+    def evaluateMove(self, accelX, accelY, rX, rY, walls, LOOK_AHEAD):
 
         testX = self.x
         testY = self.y
         testDX = self.deltaX
         testDY = self.deltaY
 
-        LOOK_AHEAD = 15
 
         for _ in range(LOOK_AHEAD):
 
@@ -69,11 +68,26 @@ class Tagger:
 
         distance = math.sqrt(dx * dx + dy * dy)
 
+        if distance < 20:
+            return 100000
+
         return -distance
 
-    def lvlThreeTaggerAI(self, rX, rY, walls):
+    def lvlOneTaggerAI(self, rX, rY):
+        if rX < self.x:
+            self.accelX = -0.25
+        elif rX > self.x:
+            self.accelX = 0.25
+        
+        if rY < self.y:
+            self.accelY = -0.25
+        elif rY > self.y:
+            self.accelY = 0.25
 
-        accConst = 0.25
+
+    def lvlTwoTaggerAI(self, rX, rY, walls):
+
+        accConst = 0.6
         
         candidates = [
             (-accConst, -accConst), (-accConst, 0), (-accConst, accConst),
@@ -86,7 +100,7 @@ class Tagger:
 
         for accelX, accelY in candidates:
 
-            score = self.evaluateMove(accelX, accelY, rX, rY, walls)
+            score = self.evaluateMove(accelX, accelY, rX, rY, walls, 30)
 
             if score > bestScore:
                 bestScore = score
@@ -95,11 +109,67 @@ class Tagger:
         self.accelX = bestAccel[0]
         self.accelY = bestAccel[1]
 
-    def roundReset(self):
-        self.x = random.randint(700, 790)
-        self.y = random.randint(50, 550)
-        #self.x = 700
-        #self.y = 300
+    def predictRunnerPosition(self, rX, rY, rVX, rVY, leadTime):
+        """Linear extrapolation of the runner's future position, with friction decay
+        matching the runner's own physics, so the prediction stays physically plausible
+        rather than assuming constant velocity forever."""
+        predX, predY = rX, rY
+        vx, vy = rVX, rVY
+        for _ in range(leadTime):
+            vx *= 0.98
+            vy *= 0.98
+            predX += vx
+            predY += vy
+        return predX, predY
+
+    def lvlThreeTaggerAI(self, rX, rY, rVX, rVY, walls):
+        accConst = 0.5
+        candidates = [
+            (-accConst, -accConst), (-accConst, 0), (-accConst, accConst),
+            (0, -accConst),                (0, accConst),
+            (accConst, -accConst),  (accConst, 0),   (accConst, accConst)
+        ]
+
+        LEAD_TIME = 10 
+
+
+        predX, predY = self.predictRunnerPosition(rX, rY, rVX, rVY, LEAD_TIME)
+        BLEND = 0.6 
+        targetX = rX + BLEND * (predX - rX)
+        targetY = rY + BLEND * (predY - rY)
+
+        bestScore = float("-inf")
+        bestAccel = (0, 0)
+
+        for accelX, accelY in candidates:
+            score = self.evaluateMove(accelX, accelY, targetX, targetY, walls, 20)
+            if score > bestScore:
+                bestScore = score
+                bestAccel = (accelX, accelY)
+
+        self.accelX = bestAccel[0]
+        self.accelY = bestAccel[1]
+        
+    def taggerAIHelper(self, taggerLevel, rX, rY, rVX, rVY, walls):
+        match taggerLevel:
+            case 1:
+                self.lvlOneTaggerAI(rX, rY)
+            case 2:
+                self.lvlTwoTaggerAI(rX, rY, walls)
+            case 3:
+                self.lvlThreeTaggerAI(rX, rY, rVX, rVY, walls)
+            case 4:
+                self.lvlThreeTaggerAI(rX, rY, rVX, rVY, walls)
+            case _:
+                raise ValueError("Invalid tagger level")
+
+    def roundReset(self, randomize=True, startX=700, startY=300):
+        if randomize:
+            self.x = random.randint(700, 790)
+            self.y = random.randint(50, 550)
+        else:
+            self.x = startX
+            self.y = startY
         self.deltaX = 0
         self.deltaY = 0
         self.accelX = 0
@@ -117,5 +187,5 @@ class Tagger:
         self.deltaX *= 0.98
         self.deltaY *= 0.98
 
-        self.x += self.deltaX #figure out if * dt in neccessary here
+        self.x += self.deltaX 
         self.y += self.deltaY
