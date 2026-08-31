@@ -6,6 +6,7 @@ eventlet.monkey_patch()
 from flask import Flask, jsonify, request
 from flask_cors import CORS
 from flask_socketio import SocketIO, emit
+import os
 
 #Python Classes
 from Game import Game
@@ -16,7 +17,7 @@ games = {}
 
 
 app = Flask(__name__)
-FRONTEND_ORIGIN = os.environ.get("FRONTEND_ORIGIN", "*")  # tighten this once frontend is deployed
+FRONTEND_ORIGIN = os.environ.get("FRONTEND_ORIGIN", "*")  
 CORS(app, origins=FRONTEND_ORIGIN)
 
 socketio = SocketIO(app, cors_allowed_origins="*", async_mode ="eventlet")
