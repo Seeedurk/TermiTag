@@ -16,8 +16,7 @@ games = {}
 
 
 app = Flask(__name__)
-FRONTEND_ORIGIN = os.environ.get("FRONTEND_ORIGIN", "*")  # tighten this once frontend is deployed
-CORS(app, origins=FRONTEND_ORIGIN)
+CORS(app)
 
 socketio = SocketIO(app, cors_allowed_origins="*", async_mode ="eventlet")
 socketio_app = app
@@ -85,6 +84,6 @@ def handle_reset():
 
 
 if __name__ == '__main__':
-    port = int(os.environ.get("PORT", 5000))
-    socketio.run(app, host="0.0.0.0", port=port, debug=False, use_reloader=False)
+    
+    socketio.run(app, port=5000, debug=False, use_reloader=False)
 
