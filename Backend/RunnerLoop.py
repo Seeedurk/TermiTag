@@ -47,27 +47,21 @@ class RunnerLoop:
         policy.epsilon = 0
         try:
             dt = 1.0 / self.tick_hz
+            next_tick = time.time()
             while self._running:
-                
-                if self.paused:
-                    pause_start = time.time()
-                    while self.paused:
-                        eventlet.sleep(0.05)
-                    self.game.t0 += time.time() - pause_start   
-                
-                t0 = time.time()
-
                 state = policy.get_state(self.game)
-
-                action = policy.get_action(state)
-
-
+                action = policy.get_action(state, training=False)
                 self.game.step(dt, action)
 
                 if self.on_state:
-                   self.on_state(self.game.get_state())
-                elapsed = time.time() - t0
-                eventlet.sleep(max(0, dt - elapsed))
+                    self.on_state(self.game.get_state())
+
+                next_tick += dt
+                sleep_time = next_tick - time.time()
+                if sleep_time > 0:
+                    eventlet.sleep(sleep_time)
+                else:
+                    next_tick = time.time()
         finally:
             self._running = False
             self._gt = None
