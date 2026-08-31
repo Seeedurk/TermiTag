@@ -8,6 +8,19 @@ import math
 
 class Game: #TODO: 
     def __init__(self):
+        self.settings = {
+            "timeLimit": 10,
+            "desiredRunnerLevel": 3,
+            "desiredTaggerLevel": 2,
+            "runnerStartX": 100,
+            "runnerStartY": 300,
+            "taggerStartX": 700,
+            "taggerStartY": 300,
+            "numberOfWalls": 2,
+            "randomizeNumberOfWalls": True,
+            "randomizePlayerPositions": True,
+        }
+
         self.Mike = Runner(100, 300)
         self.Jason = Tagger(700,300)
 
@@ -60,13 +73,83 @@ class Game: #TODO:
             self.gameReset()
             self.runnerScore += 1
             return;
-        
+
+    def apply_settings(self, settings):
+        if not isinstance(settings, dict):
+            return
+
+        for key, value in settings.items():
+            if key not in self.settings:
+                continue
+
+            current = self.settings[key]
+            if isinstance(current, bool) and isinstance(value, bool):
+                self.settings[key] = value
+            elif isinstance(current, (int, float)) and isinstance(value, (int, float)):
+                self.settings[key] = int(value) if isinstance(current, int) else float(value)
+
+        self.settings["runnerStartX"] = max(0, min(int(self.settings.get("runnerStartX", 100)), 800))
+        self.settings["runnerStartY"] = max(0, min(int(self.settings.get("runnerStartY", 300)), 600))
+        self.settings["taggerStartX"] = max(0, min(int(self.settings.get("taggerStartX", 700)), 800))
+        self.settings["taggerStartY"] = max(0, min(int(self.settings.get("taggerStartY", 300)), 600))
+        self.settings["desiredRunnerLevel"] = max(1, min(int(self.settings.get("desiredRunnerLevel", 1)), 4))
+        self.settings["desiredTaggerLevel"] = max(1, min(int(self.settings.get("desiredTaggerLevel", 1)), 4))
+        self.settings["numberOfWalls"] = max(0, min(int(self.settings.get("numberOfWalls", 2)), 10))
+
+        self.Mike.changeModel(self.settings["desiredRunnerLevel"])
+
+        self.timeLeft = self.settings["timeLimit"]
+        self.createWalls()
+
+        self.gameReset()
+        self.taggerScore = 0
+        self.runnerScore = 0
+
+    def _is_in_wall(self, x, y):
+        for wall in self.Walls:
+            if (
+                wall.x <= x <= wall.x + wall.width and
+                wall.y <= y <= wall.y + wall.height
+            ):
+                return True
+        return False
+
     def gameReset(self):
         self.total_movement = 0.0
-        self.Mike.roundReset();
-        self.Jason.roundReset();
+
         self.timerReset()
-        self.createWalls(random.randint(0, 5));
+        self.createWalls()
+
+        randomize_players = self.settings.get("randomizePlayerPositions", True)
+
+        if randomize_players:
+            for _ in range(200):
+                self.Mike.roundReset(randomize=True, startX=self.settings.get("runnerStartX", 100), startY=self.settings.get("runnerStartY", 300))
+                if not self._is_in_wall(self.Mike.retrieveX(), self.Mike.retrieveY()):
+                    break
+            for _ in range(200):
+                self.Jason.roundReset(randomize=True, startX=self.settings.get("taggerStartX", 700), startY=self.settings.get("taggerStartY", 300))
+                if not self._is_in_wall(self.Jason.retrieveX(), self.Jason.retrieveY()):
+                    break
+        else:
+            self.Mike.roundReset(
+                randomize=False,
+                startX=self.settings.get("runnerStartX", 100),
+                startY=self.settings.get("runnerStartY", 300),
+            )
+            self.Jason.roundReset(
+                randomize=False,
+                startX=self.settings.get("taggerStartX", 700),
+                startY=self.settings.get("taggerStartY", 300),
+            )
+
+        if self._is_in_wall(self.Mike.retrieveX(), self.Mike.retrieveY()):
+            self.Mike.modifyX(100)
+            self.Mike.modifyY(300)
+        if self._is_in_wall(self.Jason.retrieveX(), self.Jason.retrieveY()):
+            self.Jason.modifyX(700)
+            self.Jason.modifyY(300)
+
         self.prev_potential = self._current_potential()
         self.reward_components = {"potential": 0.0, "terminal": 0.0}
 
@@ -80,7 +163,15 @@ class Game: #TODO:
             self.ended = True
             return;
 
-    def createWalls(self, number):
+    def createWalls(self, number=None):
+        if number is None:
+            base_count = int(self.settings.get("numberOfWalls", 2))
+            if self.settings.get("randomizeNumberOfWalls", True):
+                number = random.randint(0, base_count)
+            else:
+                number = base_count
+
+        number = max(0, min(int(number), 10))
         self.Walls = []
         for i in range(number):
             x = random.randint(150, 500)
@@ -114,7 +205,14 @@ class Game: #TODO:
         if(self.ended == False):
 
             self.Mike.modelInput(action)
-            self.Jason.lvlThreeTaggerAI(self.Mike.retrieveX(), self.Mike.retrieveY(), self.Walls)
+            self.Jason.taggerAIHelper(
+                self.settings.get("desiredTaggerLevel", 1),
+                self.Mike.retrieveX(),
+                self.Mike.retrieveY(),
+                self.Mike.deltaX,
+                self.Mike.deltaY,
+                self.Walls,
+            )
 
             self.Mike.update(dt)
             self.Jason.update(dt)
@@ -156,7 +254,7 @@ class Game: #TODO:
         rX, rY = self.Mike.retrieveX(), self.Mike.retrieveY()
         tX, tY = self.Jason.retrieveX(), self.Jason.retrieveY()
         dist = math.hypot(rX - tX, rY - tY)
-        tagger_score = min(dist, 300.0) / 300.0
+        tagger_score = min(dist, 700.0) / 700.0
         margin = min(rX, 800 - rX, rY, 600 - rY)
         edge_danger = max(0.0, (80 - margin) / 80)
         wall_margin = min(
@@ -194,8 +292,7 @@ class Game: #TODO:
                 return 30
 
 
-        SAFE_DIST = 300.0
-        tagger_score = min(dist, SAFE_DIST) / SAFE_DIST 
+        tagger_score = min(dist, 700.0) / 700.0
 
         margin = min(rX, 800 - rX, rY, 600 - rY)
         edge_threshold = 80
@@ -228,8 +325,16 @@ class Game: #TODO:
         dt = 1/60
 
         self.Mike.modelInput(action)
-        self.Jason.lvlThreeTaggerAI(self.Mike.retrieveX(), self.Mike.retrieveY(), self.Walls)
-        
+
+        self.Jason.taggerAIHelper(
+            2,
+            self.Mike.retrieveX(),
+            self.Mike.retrieveY(),
+            self.Mike.deltaX,
+            self.Mike.deltaY,
+            self.Walls,
+        )
+
         self.Mike.update(dt)
 
         self.total_movement += abs(self.Mike.deltaX) + abs(self.Mike.deltaY)
