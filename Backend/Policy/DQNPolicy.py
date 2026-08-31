@@ -120,9 +120,11 @@ class DQNPolicy:
         self.memory.append((state, action, reward, next_state, done))
 
 
-    def get_action(self, state):
-
-        eps = max(0.05, 1.0 - self.n_games / 2000)
+    def get_action(self, state, training=True):
+        if training:
+            eps = max(0.05, 1.0 - self.n_games / 2000)
+        else:
+            eps = 0.0
 
         state_tensor = torch.tensor(state, dtype=torch.float32)
 
