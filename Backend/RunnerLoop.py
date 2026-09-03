@@ -50,7 +50,7 @@ class RunnerLoop:
             next_tick = time.time()
             while self._running:
                 state = policy.get_state(self.game)
-                action = policy.get_action(state, training=False)
+                action = policy.get_action(state)
                 self.game.step(dt, action)
 
                 if self.on_state:
