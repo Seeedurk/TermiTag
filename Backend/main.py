@@ -31,7 +31,14 @@ def handle_connect():
     print(f'Client connected: {sid}')
 
     game = Game()
-    runner = RunnerLoop(game, tick_hz=60, on_state=lambda state: socketio.emit('position_update', state, room=sid))
+    runner = RunnerLoop(
+        game,
+        on_state=lambda state: socketio.emit(
+            'position_update',
+            state,
+            room=sid
+        )
+    )
     games[sid] = {'game': game, 'runner': runner}
 
     runner.start()
