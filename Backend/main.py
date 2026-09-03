@@ -75,6 +75,7 @@ def handle_pause(data):
         selectedEntry = games[sid]
         selectedRunner = selectedEntry.get('runner')
         selectedRunner.paused = data
+        selectedEntry.ended = False
 
 @socketio.on('reset')
 def handle_reset():
@@ -83,6 +84,7 @@ def handle_reset():
         selectedEntry = games[sid]
         selectedGame = selectedEntry.get('game')
         selectedGame.gameReset()
+        selectedGame.ended = False
 
 
 if __name__ == '__main__':

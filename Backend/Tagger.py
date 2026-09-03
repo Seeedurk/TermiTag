@@ -32,17 +32,18 @@ class Tagger:
     def modelInput(self):
         self.accelX = random.randint(-10,10)
         self.accelY = random.randint(-10,10)
-
+    
+    
+    '''
     def evaluateMove(self, accelX, accelY, rX, rY, walls, LOOK_AHEAD):
-
         testX = self.x
         testY = self.y
         testDX = self.deltaX
         testDY = self.deltaY
 
+        best_distance = float("inf")
 
-        for _ in range(LOOK_AHEAD):
-
+        for i in range(LOOK_AHEAD):
             testDX += accelX
             testDY += accelY
 
@@ -55,39 +56,78 @@ class Tagger:
             testX += testDX
             testY += testDY
 
-
             for wall in walls:
-                if (
-                    wall.x <= testX <= wall.x + wall.width and
-                    wall.y <= testY <= wall.y + wall.height
-                ):
+                if (wall.x <= testX <= wall.x + wall.width and
+                    wall.y <= testY <= wall.y + wall.height):
                     return -100000
 
-        dx = rX - testX
-        dy = rY - testY
+            dx = rX - testX
+            dy = rY - testY
+            distance = math.sqrt(dx * dx + dy * dy)
 
-        distance = math.sqrt(dx * dx + dy * dy)
+            if distance < 20:
+                return 100000 - i    # earlier interception scores higher than later interception
 
-        if distance < 20:
-            return 100000
+            if distance < best_distance:
+                best_distance = distance
 
-        return -distance
+        return -best_distance
+    '''
+
+    def evaluateMove(self, accelX, accelY, rX, rY, walls, LOOK_AHEAD):
+        testX = self.x
+        testY = self.y
+        testDX = self.deltaX
+        testDY = self.deltaY
+
+        best_distance = float("inf")
+
+        for _ in range(LOOK_AHEAD):
+            testDX += accelX
+            testDY += accelY
+
+            testDX = max(-6, min(6, testDX))
+            testDY = max(-6, min(6, testDY))
+
+            testDX *= 0.98
+            testDY *= 0.98
+
+            testX += testDX
+            testY += testDY
+
+            for wall in walls:
+                if (wall.x <= testX <= wall.x + wall.width and
+                    wall.y <= testY <= wall.y + wall.height):
+                    return -100000
+
+            dx = rX - testX
+            dy = rY - testY
+            distance = math.sqrt(dx * dx + dy * dy)
+
+            if distance < 20:
+                return 100000
+
+            if distance < best_distance:
+                best_distance = distance
+
+        return -best_distance
+    
 
     def lvlOneTaggerAI(self, rX, rY):
         if rX < self.x:
-            self.accelX = -0.25
+            self.accelX = -0.4
         elif rX > self.x:
-            self.accelX = 0.25
+            self.accelX = 0.4
         
         if rY < self.y:
-            self.accelY = -0.25
+            self.accelY = -0.4
         elif rY > self.y:
-            self.accelY = 0.25
+            self.accelY = 0.4
 
 
     def lvlTwoTaggerAI(self, rX, rY, walls):
 
-        accConst = 0.6
+        accConst = 0.4
         
         candidates = [
             (-accConst, -accConst), (-accConst, 0), (-accConst, accConst),
@@ -123,7 +163,7 @@ class Tagger:
         return predX, predY
 
     def lvlThreeTaggerAI(self, rX, rY, rVX, rVY, walls):
-        accConst = 0.5
+        accConst = 0.4
         candidates = [
             (-accConst, -accConst), (-accConst, 0), (-accConst, accConst),
             (0, -accConst),                (0, accConst),

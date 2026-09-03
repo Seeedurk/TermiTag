@@ -10,13 +10,13 @@ class Game: #TODO:
     def __init__(self):
         self.settings = {
             "timeLimit": 10,
-            "desiredRunnerLevel": 3,
-            "desiredTaggerLevel": 2,
+            "desiredRunnerLevel": 4,
+            "desiredTaggerLevel": 1,
             "runnerStartX": 100,
             "runnerStartY": 300,
             "taggerStartX": 700,
             "taggerStartY": 300,
-            "numberOfWalls": 2,
+            "numberOfWalls": 5,
             "randomizeNumberOfWalls": True,
             "randomizePlayerPositions": True,
         }
@@ -250,30 +250,83 @@ class Game: #TODO:
 
         return False
 
+    def _nearest_wall_distance(self, x, y):
+        """
+        Returns the Euclidean distance from (x, y) to the nearest wall.
+        If there are no walls, returns a large value.
+        """
+
+        if not self.Walls:
+            return 999.0
+
+        nearest_distance = 999.0
+
+        for wall in self.Walls:
+            closest_x = max(wall.x, min(x, wall.x + wall.width))
+            closest_y = max(wall.y, min(y, wall.y + wall.height))
+
+            dx = closest_x - x
+            dy = closest_y - y
+
+            distance = math.hypot(dx, dy)
+
+            if distance < nearest_distance:
+                nearest_distance = distance
+
+        return nearest_distance
+
+
+
+
     def _current_potential(self):
         rX, rY = self.Mike.retrieveX(), self.Mike.retrieveY()
         tX, tY = self.Jason.retrieveX(), self.Jason.retrieveY()
         dist = math.hypot(rX - tX, rY - tY)
         tagger_score = min(dist, 700.0) / 700.0
-        margin = min(rX, 800 - rX, rY, 600 - rY)
-        edge_danger = max(0.0, (80 - margin) / 80)
+
+        # --- Tier 1: tactical-range hazard, corner-aware via compounding (not max) ---
+        edge_threshold = 30
+        edge_x = max(0.0, (edge_threshold - min(rX, 800 - rX)) / edge_threshold)
+        edge_y = max(0.0, (edge_threshold - min(rY, 600 - rY)) / edge_threshold)
+        # Probabilistic-OR: being close on two axes at once compounds rather than
+        # being capped at whichever single axis is worst. This is what actually
+        # distinguishes a survivable wall-hug from a true corner trap.
+        edge_danger = 1 - (1 - edge_x) * (1 - edge_y)
+
         wall_margin = min(
-            (math.hypot(rX - max(w.x, min(rX, w.x+w.width)), rY - max(w.y, min(rY, w.y+w.height))))
+            (math.hypot(rX - max(w.x, min(rX, w.x + w.width)), rY - max(w.y, min(rY, w.y + w.height))))
             for w in self.Walls
         ) if self.Walls else 999
-        wall_danger = max(0.0, (60 - wall_margin) / 60)
-        return tagger_score - max(edge_danger, wall_danger)
+        wall_threshold = 25
+        wall_danger = max(0.0, (wall_threshold - wall_margin) / wall_threshold)
 
-    
+        tactical_hazard = 1 - (1 - edge_danger) * (1 - wall_danger)
+
+        # --- Tier 2: emergency barrier, only in the final ~2 frames before real contact ---
+        emergency_threshold = 12
+        edge_emergency = max(0.0, (emergency_threshold - min(rX, 800 - rX, rY, 600 - rY)) / emergency_threshold) ** 3
+        wall_emergency = max(0.0, (emergency_threshold - wall_margin) / emergency_threshold) ** 3
+        emergency_hazard = max(edge_emergency, wall_emergency)
+
+        W_TAGGER = 1.0
+        W_TACTICAL = 0.4
+        W_EMERGENCY = 3.0
+
+        hazard = W_TACTICAL * tactical_hazard + W_EMERGENCY * emergency_hazard
+
+        return W_TAGGER * tagger_score - hazard
+
 
     def get_runnerReward(self):
         rX, rY = self.Mike.retrieveX(), self.Mike.retrieveY()
         tX, tY = self.Jason.retrieveX(), self.Jason.retrieveY()
         dist = math.hypot(rX - tX, rY - tY)
 
+        # --- Terminal outcomes: asymmetric per risk-sensitive RL research —
+        # a positioning error (wall/boundary) is penalized more than a fair loss to the tagger ---
         if rX > 800 or rX < 0 or rY > 600 or rY < 0:
-            self.reward_components["terminal"] += -30
-            return -30
+            self.reward_components["terminal"] += -40
+            return -40
         if dist < 20:
             self.reward_components["terminal"] += -30
             return -30
@@ -285,31 +338,16 @@ class Game: #TODO:
             return 30
         for wall in self.Walls:
             if rX >= wall.x and rX <= wall.x + wall.width and rY >= wall.y and rY <= wall.y + wall.height:
-                self.reward_components["terminal"] += -30
-                return -30
+                self.reward_components["terminal"] += -40
+                return -40
             elif tX >= wall.x and tX <= wall.x + wall.width and tY >= wall.y and tY <= wall.y + wall.height:
                 self.reward_components["terminal"] += 30
                 return 30
 
+        new_potential = self._current_potential()
 
-        tagger_score = min(dist, 700.0) / 700.0
-
-        margin = min(rX, 800 - rX, rY, 600 - rY)
-        edge_threshold = 80
-        edge_danger = max(0.0, (edge_threshold - margin) / edge_threshold)  
-
-        wall_margin = min(
-            (math.hypot(rX - max(w.x, min(rX, w.x + w.width)), rY - max(w.y, min(rY, w.y + w.height))))
-            for w in self.Walls
-        ) if self.Walls else 999
-        wall_threshold = 60
-        wall_danger = max(0.0, (wall_threshold - wall_margin) / wall_threshold)  
-
-        hazard = max(edge_danger, wall_danger)  
-        new_potential = tagger_score - hazard   
-
-        GAMMA = self.Mike.policy.gamma  
-        SHAPING_SCALE = 10.0            
+        GAMMA = self.Mike.policy.gamma
+        SHAPING_SCALE = 10.0
 
         shaping_reward = (GAMMA * new_potential - self.prev_potential) * SHAPING_SCALE
         self.prev_potential = new_potential
@@ -327,7 +365,7 @@ class Game: #TODO:
         self.Mike.modelInput(action)
 
         self.Jason.taggerAIHelper(
-            2,
+            1,
             self.Mike.retrieveX(),
             self.Mike.retrieveY(),
             self.Mike.deltaX,
