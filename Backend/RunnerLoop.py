@@ -4,7 +4,7 @@ import torch
 import numpy as np
 
 class RunnerLoop:
-    def __init__(self, game, tick_hz=30, on_state=None):
+    def __init__(self, game, tick_hz=10, on_state=None):
         self.game = game
         self.tick_hz = tick_hz
         self.on_state = on_state
