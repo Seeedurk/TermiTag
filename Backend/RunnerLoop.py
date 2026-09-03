@@ -45,10 +45,12 @@ class RunnerLoop:
     def _run(self):
         policy = self.game.Mike.policy
         policy.epsilon = 0
+
         try:
             dt = 1.0 / self.tick_hz
+            next_tick = time.monotonic()
+
             while self._running:
-                tick_start = time.time()
                 state = policy.get_state(self.game)
                 action = policy.get_action(state)
                 self.game.step(dt, action)
@@ -56,8 +58,16 @@ class RunnerLoop:
                 if self.on_state:
                     self.on_state(self.game.get_state())
 
-                elapsed = time.time() - tick_start
-                eventlet.sleep(max(0, dt - elapsed))
+                next_tick += dt
+                sleep_time = next_tick - time.monotonic()
+
+                if sleep_time > 0:
+                    eventlet.sleep(sleep_time)
+                else:
+                    # We fell behind; don't try to run multiple
+                    # ticks immediately to catch up.
+                    next_tick = time.monotonic()
+
         finally:
             self._running = False
             self._gt = None

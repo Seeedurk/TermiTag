@@ -221,7 +221,7 @@ class Game: #TODO:
             self.checkWalls()
             self.checkTimer()
             self.checkWin()
-            self.timeLeft = math.floor(10 - (time.time() - self.t0))
+            self.timeLeft -= dt
     
     def check_done(self):
         rX, rY = self.Mike.retrieveX(), self.Mike.retrieveY()
@@ -284,13 +284,10 @@ class Game: #TODO:
         dist = math.hypot(rX - tX, rY - tY)
         tagger_score = min(dist, 700.0) / 700.0
 
-        # --- Tier 1: tactical-range hazard, corner-aware via compounding (not max) ---
         edge_threshold = 30
         edge_x = max(0.0, (edge_threshold - min(rX, 800 - rX)) / edge_threshold)
         edge_y = max(0.0, (edge_threshold - min(rY, 600 - rY)) / edge_threshold)
-        # Probabilistic-OR: being close on two axes at once compounds rather than
-        # being capped at whichever single axis is worst. This is what actually
-        # distinguishes a survivable wall-hug from a true corner trap.
+
         edge_danger = 1 - (1 - edge_x) * (1 - edge_y)
 
         wall_margin = min(
@@ -302,7 +299,7 @@ class Game: #TODO:
 
         tactical_hazard = 1 - (1 - edge_danger) * (1 - wall_danger)
 
-        # --- Tier 2: emergency barrier, only in the final ~2 frames before real contact ---
+-
         emergency_threshold = 12
         edge_emergency = max(0.0, (emergency_threshold - min(rX, 800 - rX, rY, 600 - rY)) / emergency_threshold) ** 3
         wall_emergency = max(0.0, (emergency_threshold - wall_margin) / emergency_threshold) ** 3
@@ -322,8 +319,7 @@ class Game: #TODO:
         tX, tY = self.Jason.retrieveX(), self.Jason.retrieveY()
         dist = math.hypot(rX - tX, rY - tY)
 
-        # --- Terminal outcomes: asymmetric per risk-sensitive RL research —
-        # a positioning error (wall/boundary) is penalized more than a fair loss to the tagger ---
+
         if rX > 800 or rX < 0 or rY > 600 or rY < 0:
             self.reward_components["terminal"] += -40
             return -40
