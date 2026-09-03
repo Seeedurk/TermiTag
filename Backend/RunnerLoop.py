@@ -4,7 +4,7 @@ import torch
 import numpy as np
 
 class RunnerLoop:
-    def __init__(self, game, tick_hz=10, on_state=None):
+    def __init__(self, game, tick_hz=60, on_state=None):
         self.game = game
         self.tick_hz = tick_hz
         self.on_state = on_state
@@ -49,8 +49,19 @@ class RunnerLoop:
         try:
             dt = 1.0 / self.tick_hz
             next_tick = time.monotonic()
+            tick_count = 0
+            last_tick = time.monotonic()
 
             while self._running:
+                now = time.monotonic()
+                print(
+                    f"TICK {tick_count} | "
+                    f"real_dt={now - last_tick:.4f} | "
+                    f"target_dt={dt:.4f}"
+                )
+                last_tick = now
+                tick_count += 1
+
                 state = policy.get_state(self.game)
                 action = policy.get_action(state)
                 self.game.step(dt, action)
@@ -64,8 +75,6 @@ class RunnerLoop:
                 if sleep_time > 0:
                     eventlet.sleep(sleep_time)
                 else:
-                    # We fell behind; don't try to run multiple
-                    # ticks immediately to catch up.
                     next_tick = time.monotonic()
 
         finally:
