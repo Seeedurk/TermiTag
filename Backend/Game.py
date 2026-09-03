@@ -299,7 +299,7 @@ class Game: #TODO:
 
         tactical_hazard = 1 - (1 - edge_danger) * (1 - wall_danger)
 
--
+
         emergency_threshold = 12
         edge_emergency = max(0.0, (emergency_threshold - min(rX, 800 - rX, rY, 600 - rY)) / emergency_threshold) ** 3
         wall_emergency = max(0.0, (emergency_threshold - wall_margin) / emergency_threshold) ** 3

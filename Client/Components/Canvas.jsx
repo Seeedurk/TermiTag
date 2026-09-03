@@ -76,7 +76,7 @@ function Canvas({ width, height, objects }) {
             }
             context.restore();
 
-            const t = Math.min((Date.now() - lastUpdateRef.current) / 33, 1);
+            const t = Math.min((Date.now() - lastUpdateRef.current) / 16.67, 1);
             const interpX = prevPosRef.current.x + (nextPosRef.current.x - prevPosRef.current.x) * t;
             const interpY = prevPosRef.current.y + (nextPosRef.current.y - prevPosRef.current.y) * t;
 
