@@ -53,11 +53,16 @@ The primary experiment trains the Runner against a **medium-strength determinist
 
 ### 1. Environment Design
 
-[Explain why you created AI Tag and what you wanted the environment to demonstrate.]
+When I created this project the goals I had in mind were learning to implement base level reinforcement learning AI, and testing 
+whether that AI could successfully train against a tagger, then use what it learned to beat a higher level tagger
 
-[Describe the basic game mechanics: Runner, Tagger, movement, boundaries, walls, collisions, and episode conditions.]
+The rules are simple, the environment is a 600*800 px arena, by default there are a randomized number of walls 0 - 5
+The tagger is tasked with touching the runner, and the runner must evade the tagger, winning when the timer reaches 0
+Touching the wall or going out of bounds results in a point for the other player
+Each game is first to 10 rounds
 
-[Explain any important design decisions that affected the reinforcement-learning problem.]
+One important thing to notice is that the runner is controlled by the AI Policy, while the Tagger is deterministic. This is because
+the tagger role is straight forward, while running is more open ended with various strategies. 
 
 ---
 

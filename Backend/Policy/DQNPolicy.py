@@ -54,6 +54,7 @@ class DQNPolicy:
 
         distance_x = tagger_x - runner_x
         distance_y = tagger_y - runner_y
+
         left = runner_x / 800
         right = (800 - runner_x) / 800
         top = runner_y / 600
@@ -122,7 +123,7 @@ class DQNPolicy:
 
     def get_action(self, state):
 
-        eps = max(0.05, 1.0 - self.n_games / 2000)
+        eps = max(0.05, 1.0 - self.n_games / 3000)
 
         state_tensor = torch.tensor(state, dtype=torch.float32)
 

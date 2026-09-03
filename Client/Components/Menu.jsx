@@ -23,7 +23,7 @@ function Menu( { rewardGraphData, distanceGraphData } ) {
     const [paused, setPause] = useState(false);
     const [settings, setSettings] = useState(defaultSettings);
     const [settingsOpen, setSettingsOpen] = useState(false);
-    const [view, setView] = useState('stats');
+    const [view, setView] = useState('algorithm');
 
     useEffect(() => {
         const mq = window.matchMedia('(max-width: 700px)');

@@ -15,7 +15,7 @@ class Runner:
 
         self.accelX = 0
         self.accelY = 0
-        self.level = 3
+        self.level = 4
 
         state_size=23
         action_size=4
@@ -52,11 +52,13 @@ class Runner:
         try:
             match desiredLevel:
                 case 1:
-                    self.policy.load("UntrainedModel.pth", meta_path="./model/UntrainedMeta.pth")
+                    self.policy.load("lvl0Model.pth", meta_path="./model/meta0.pth")
                 case 2:
-                    self.policy.load("2500Model.pth", meta_path="./model/2500ModelMeta.pth")
+                    self.policy.load("lvl1Model.pth", meta_path="./model/meta1.pth")
                 case 3:
-                    self.policy.load("5kModel.pth", meta_path="./model/5kModelMeta.pth")
+                    self.policy.load("lvl2Model.pth", meta_path="./model/meta2.pth")
+                case 4:
+                    self.policy.load("model.pth", meta_path="./model/meta.pth")
         
         except FileNotFoundError:
             print("Model or Meta file not found. Change not applied.")
