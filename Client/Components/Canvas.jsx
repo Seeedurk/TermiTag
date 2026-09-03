@@ -115,7 +115,6 @@ function Canvas({ width, height, objects }) {
             context.fillRect(rx - labelW / 2, ry - labelH, labelW, labelH);
             context.fillStyle = '#d6edff';
             context.fillText(runnerLabel, rx, ry - 4);
-            context.fillText('Runner: '+ scoreObject.current.runnerScore, 350, 30)
             context.restore();
         
 
@@ -169,14 +168,23 @@ function Canvas({ width, height, objects }) {
             context.fillRect(cx - labelWC / 2, cy - labelHC, labelWC, labelHC);
             context.fillStyle = '#ffb3b6';
             context.fillText(chaserLabel, cx, cy - 4);
-            context.fillText('Tagger: '+ scoreObject.current.taggerScore, 450, 30);
             context.restore();
+
+            context.font = '12px sans-serif';
+            context.textAlign = 'center';
+            context.textBaseline = 'bottom';
+            context.fillStyle = '#d6edff';
+            context.fillText('Runner: '+ scoreObject.current.runnerScore, width / 2 - 50, 30);
+
+            context.fillStyle = '#ffb3b6';
+            context.fillText('Tagger: '+ scoreObject.current.taggerScore, width / 2 + 50, 30);
 
 
             //timer
             context.fillStyle = '#FFFFFF';
             context.font = '20px sans-serif';
-            context.fillText(timer.current, 395, 30);
+            context.textAlign = 'center';
+            context.fillText(Number(timer.current).toFixed(1), width / 2, 30);
             animationId = requestAnimationFrame(loop);
 
 
