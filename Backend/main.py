@@ -33,7 +33,7 @@ def handle_connect():
     game = Game()
     runner = RunnerLoop(
         game,
-        tick_hz=45,
+        tick_hz=30,
         on_state=lambda state: socketio.emit(
             'position_update',
             state,
