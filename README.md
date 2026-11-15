@@ -21,6 +21,12 @@
 
 ---
 
+## Video Demo
+
+[Watch the TermiTank demo on Google Drive](https://drive.google.com/file/d/1-CGshnRbeDEKzbUGkgboDsVjkcMWjffZ/view?usp=sharing)
+
+---
+
 ## Overview
 
 **TermiTag** is a real-time pursuit-and-evasion environment designed to explore reinforcement learning in a dynamic game setting.
@@ -380,14 +386,6 @@ Measured evaluation results have not been recorded yet.
 When results are available, performance against the stronger Tagger can indicate how well the learned evasion policy transfers to a more challenging opponent.
 
 ---
-
-## Video Demo
-
-Export the Screencastify recording as an H.264 MP4 and add it to the repository as `assets/demo.mp4`. The embedded player below loads that file from the `main` branch.
-
-<video src="https://raw.githubusercontent.com/Seeedurk/TermiTank/main/assets/demo.mp4" controls width="100%">
-  Your browser does not support embedded video.
-</video>
 
 ---
 
