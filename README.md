@@ -15,6 +15,7 @@
   <a href="#tagger-ai">Tagger AI</a> •
   <a href="#training--evaluation">Training & Evaluation</a> •
   <a href="#results">Results</a> •
+  <a href="#video-demo">Video Demo</a> •
   <a href="#setup">Setup</a>
 </p>
 
@@ -72,15 +73,15 @@ The Tagger was developed in multiple stages to create progressively more challen
 
 **Level 1 — Basic Pursuit**
 
-[Explain how the first Tagger determines its movement.]
+The Level 1 Tagger accelerates toward the Runner's current position.
 
 **Level 2 — Medium Pursuit**
 
-[Explain how the medium Tagger improves upon Level 1. Mention candidate directions/search if applicable.]
+The Level 2 Tagger checks candidate acceleration directions and chooses one expected to approach the Runner.
 
 **Level 3 — Advanced Pursuit**
 
-[Explain the stronger Tagger's prediction/interception strategy.]
+The Level 3 Tagger predicts the Runner's future position and aims to intercept it.
 
 The Tagger difficulty was designed to increase through **decision-making complexity rather than simply increasing movement speed**.
 
@@ -88,21 +89,21 @@ The Tagger difficulty was designed to increase through **decision-making complex
 
 ### 3. Reinforcement Learning Agent
 
-[Explain why the Runner was selected as the reinforcement-learning agent.]
+The Runner was chosen for reinforcement learning because evasion allows for a wider range of strategies than direct pursuit.
 
 The Runner uses a **Double Deep Q-Network (Double DQN)** to select movement actions based on the current game state.
 
-[Briefly explain the state representation.]
+The state representation summarizes the positions and velocities of both agents, nearby walls, boundaries, and remaining time.
 
-[Explain the four available actions.]
+The four actions accelerate up, down, left, or right.
 
-[Explain the neural-network architecture.]
+The network maps 23 state values through two 128-unit ReLU layers to four action-value outputs.
 
 ---
 
 ### 4. Reward & State Design
 
-[Explain how you decided what information the Runner should observe.]
+The observation includes agent motion, arena limits, remaining time, and nearby obstacles.
 
 The state includes information about:
 
@@ -113,45 +114,35 @@ The state includes information about:
 * Remaining time
 * Nearby environmental obstacles
 
-[Explain why these features are useful for learning evasive behavior.]
+These features help the Runner estimate the threat direction and identify available space for evasive movement.
 
 The reward system combines:
 
-* [Terminal rewards]
-* [Distance-based reward shaping]
-* [Environmental hazard penalties]
+* Terminal rewards for survival, tagging, and collisions
+* Distance-based reward shaping relative to the Tagger
+* Penalties for environmental hazards
 
-[Explain the intended behavior produced by the reward function.]
+Together, these rewards encourage survival and separation from the Tagger while discouraging collisions.
 
 ---
 
 ### 5. Training Process
 
-[Explain how the Runner was trained.]
+The Runner was trained through repeated games against the medium Tagger using Double DQN.
 
 Training was performed against the **medium-strength deterministic Tagger**.
 
-[State the training configuration that is actually relevant: number of episodes, learning rate, discount factor, etc.]
+The training configuration is not documented here.
 
-[Explain how experiences were stored and replayed.]
+State transitions were stored in replay memory and sampled for training.
 
-[Explain how the target network / Double DQN update was used.]
+The online network selects the next action, and the target network evaluates that action when calculating the update.
 
 ---
 
 ### 6. Development & Iteration
 
-[Describe the most important problems encountered during development.]
-
-**Problem:** [What initially failed?]
-
-**Investigation:** [What did you examine or test?]
-
-**Change:** [What did you modify?]
-
-**Result:** [What happened afterward?]
-
-Repeat this format only for the **2–4 most meaningful iterations**.
+Development focused on representing the game state, shaping rewards for evasion, and comparing the Runner against Taggers with different strategies.
 
 ---
 
@@ -164,17 +155,17 @@ After training, the Runner was evaluated against:
 
 This was intended to determine whether the learned Runner policy could perform against an opponent with a more sophisticated pursuit strategy.
 
-[Describe your actual evaluation procedure and number of games.]
+Evaluation compares the Runner against the medium and advanced Taggers. The number of games and measured outcomes have not been recorded here.
 
 ---
 
 ### 8. Final Development Outcome
 
-[Briefly summarize what the final system achieved.]
+The final system combines a real-time game environment, deterministic Taggers, and a Double DQN Runner.
 
-[State the most important result.]
+Measured performance results are not included yet.
 
-[State the most important technical lesson or limitation discovered during development.]
+Testing against additional opponents and environments would be needed to establish how well the learned policy generalizes.
 
 
 ---
@@ -382,78 +373,44 @@ This provides a simple test of whether the learned policy can generalize beyond 
 
 ## Results
 
-> **Replace this section with your actual measured results. Do not use example numbers.**
-
-| Runner Model            | Medium Tagger | Advanced Tagger |
-| ----------------------- | ------------: | --------------: |
-| Untrained Double DQN    |          `5%` |           `1%`  |
-| 2500 episode Double DQN |         `65%` |           `20%` |
-| 5k episode Double DQN   |         `73%` |           `50%` |
-
-### Example Evaluation
-
-```text
-Evaluation Games: 100
-
-Medium Tagger
-Runner Wins: 15
-Tagger Wins: 10
-Win Rate: XX%
-
-Advanced Tagger
-Runner Wins: XX
-Tagger Wins: XX
-Win Rate: XX%
-```
+Measured evaluation results have not been recorded yet.
 
 ### Interpretation
 
-The Runner was trained exclusively against the medium-strength Tagger. Performance against the stronger Tagger provides an indication of how well the learned evasion policy transfers to a more challenging opponent.
+When results are available, performance against the stronger Tagger can indicate how well the learned evasion policy transfers to a more challenging opponent.
 
 ---
 
-## Demo
+## Video Demo
 
-<p align="center">
-  <img src="assets/demo.gif" alt="AI Tag demonstration" width="800">
-</p>
+Export the Screencastify recording as an H.264 MP4 and add it to the repository as `assets/demo.mp4`. The embedded player below loads that file from the `main` branch.
 
-A short demonstration video is available below:
-
-**[Watch the AI Tag demonstration](YOUR_VIDEO_LINK_HERE)**
-
-The demonstration shows:
-
-1. The game environment
-2. The deterministic Tagger
-3. The Double DQN Runner
-4. Training/evaluation behavior
-5. Performance against different Tagger levels
+<video src="https://raw.githubusercontent.com/Seeedurk/TermiTank/main/assets/demo.mp4" controls width="100%">
+  Your browser does not support embedded video.
+</video>
 
 ---
 
 ## Project Structure
 
 ```text
-AI-Tag/
-├── frontend/
-│   └── ...
-├── backend/
+TermiTank/
+├── Client/
+│   ├── Components/
+│   ├── Root/
+│   └── Styles/
+├── Backend/
+│   ├── Models/
+│   ├── Policy/
 │   ├── Game.py
 │   ├── Runner.py
+│   ├── RunnerLoop.py
 │   ├── Tagger.py
-│   ├── DQNPolicy.py
-│   ├── QTrainer.py
-│   └── model.py
-├── assets/
-│   ├── gameplay.gif
-│   ├── architecture.png
-│   └── demo.mp4
-├── README.md
-└── requirements.txt
+│   ├── Train.py
+│   └── main.py
+├── package.json
+└── README.md
 ```
-
-> Adjust this structure to match the actual repository.
 
 ---
 
@@ -505,20 +462,19 @@ Potential future improvements include:
 ## Installation
 
 ```bash
-git clone YOUR_REPOSITORY_URL
-
+git clone https://github.com/Seeedurk/TermiTank.git
+cd TermiTank
 npm install
-
-python pip install
-
-cd frontend
+python -m pip install -r Backend/requirements.txt
 npm run dev
-
-cd backend
-python main.py
 ```
 
-Then follow the project-specific instructions for starting the backend and frontend.
+In a second terminal, start the backend:
+
+```bash
+cd Backend
+python main.py
+```
 
 ---
 
